@@ -1,3 +1,5 @@
 remote_theme: just-the-docs/just-the-docs
 title: incitron docs
 description: incitron engine documentation
+
+theme: jekyll-theme-cayman
