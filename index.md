@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# incitron engine
+--------
 
-You can use the [editor on GitHub](https://github.com/iainfullelove/iainfullelove.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+`incitron` is a custom mixed-integer linear programming (MILP) solver for strategic mine scheduling problems.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+General-purpose commercial linear programming solvers such as `CPLEX` and `Gurobi` are commonly used for solving strategic mine planning problems. However, these solves are not optimised for solving mine scheduling problems, and solve times can become large with even non-trivial sized models. `incitron` overcomes the challengers faced by these other solvers because it is driven by a suite of custom algorithms that are fine-tuned for mine scheduling problems.
 
-### Markdown
+The core engine is written in C, with a command-line interface written in C++. The command-line interface is used to provide interfaces with other languages.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Features
+--------
 
-```markdown
-Syntax highlighted code block
+Key features of the incitron engine include:
+* Dynamic mining and processing cut-off grade optimisation
+* Material blending 
+* Capital expenditure decisions
+* Stockpiling & reclaiming considered as part of the optimisation process
+* Custom mining precedences between different mining areas
+* Custom designed constraints for mine scheduling:
+  * Grade blending constraints
+  * Equipment utilisation leveling
+  * Cashflow requirements
+  * Capital expenditure limits
 
-# Header 1
-## Header 2
-### Header 3
+The fast solve times and accuracy of the incitron engine are driven by a suite of custom mining algorithms, such as:
+* Bienstock-Zuckerberg (BZ) algorithm
+* TopoSort heuristic algorithm
 
-- Bulleted
-- List
+## Code
+--------
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/iainfullelove/iainfullelove.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+The full code repo is hosted on [Github](https://github.com/iainfullelove/incitron).
