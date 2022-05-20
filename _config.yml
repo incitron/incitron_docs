@@ -2,3 +2,9 @@ remote_theme: just-the-docs/just-the-docs
 title: incitron docs
 author: iain fullelove
 description: incitron engine documentation for users and developers
+
+url: "https://just-the-docs.github.io"
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
