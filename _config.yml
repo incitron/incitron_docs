@@ -8,3 +8,11 @@ url: "https://just-the-docs.github.io"
 # Back to top link
 back_to_top: true
 back_to_top_text: "Back to top"
+
+# Aux links for the upper right navigation
+aux_links:
+  "Code Repo":
+    - "//github.com/iainfullelove/incitron"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: true
