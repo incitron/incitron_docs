@@ -1,1 +1,4 @@
-theme: jekyll-theme-cayman
+remote_theme: just-the-docs/just-the-docs
+title: incitron docs
+author: iain fullelove
+description: incitron engine documentation for users and developers
