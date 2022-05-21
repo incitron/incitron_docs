@@ -1,10 +1,10 @@
 ---
 layout: default
-title: bz algorithm
+title: pre-processing
 parent: academic papers
 has_children: false
 ---
 
-# bienstock-zuckerberg algorithm (BZ)
+# pre-processing
 --------
 

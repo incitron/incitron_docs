@@ -10,7 +10,7 @@ has_children: false
 
 `incitron` is a custom mixed-integer linear programming (MILP) solver for strategic mine scheduling problems.
 
-General-purpose commercial linear programming solvers such as `CPLEX` and `Gurobi` are commonly used for solving strategic mine planning problems. However, these solves are not optimised for solving mine scheduling problems, and solve times can become large with even non-trivial sized models. `incitron` overcomes the challengers faced by these other solvers because it is driven by a suite of custom algorithms that are fine-tuned for mine scheduling problems.
+General-purpose commercial linear programming solvers such as [CPLEX](https://www.ibm.com/analytics/cplex-optimizer) and [Gurobi](https://www.gurobi.com/) are commonly used for solving strategic mine planning problems. However, these solves are not optimised for solving mine scheduling problems, and solve times can become large with even non-trivial sized models. `incitron` overcomes the challengers faced by these other solvers because it is driven by a suite of custom algorithms that are fine-tuned for mine scheduling problems.
 
 The core engine is written in C, with a command-line interface written in C++. The command-line interface is used to provide interfaces with other languages.
 
