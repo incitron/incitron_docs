@@ -17,15 +17,15 @@ This is a Precedence Constrained Production Scheduling Problem (PCPSP).
 ------------------
 
 $$
-\begin{aligned}
+\begin{align}
 y_{\mathrm{btd}} = fraction~of~block~b~mined~in~period~t~and~sent~to~destination~d.
-\end{aligned}
+\end{align}
 $$
 
 $$
-\begin{aligned}
+\begin{align}
 x_{\mathrm{bt}} = whether block b has been mined BY period t, otherwise 0.
-\end{aligned}
+\end{align}
 $$
 
 $precedence \; variables \; (binary) \; : \; x_{\mathrm{bt}}$
