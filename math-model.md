@@ -1,3 +1,5 @@
+{% include mathjax.html %}
+
 ---
 layout: default
 title: math model
