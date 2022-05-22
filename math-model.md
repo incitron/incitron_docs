@@ -1,11 +1,11 @@
-{% include mathjax.html %}
-
 ---
 layout: default
 title: math model
 nav_order: 3
 has_children: false
 ---
+
+{% include mathjax.html %}
 
 # Mathematical Model
 ----------
