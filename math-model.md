@@ -16,15 +16,15 @@ This is a Precedence Constrained Production Scheduling Problem (PCPSP).
 ## Decision Variables
 ------------------
 
-$$x_{\mathrm{bt}}$$ = whether block b has been mined BY period t, otherwise 0.
+$$x_{\mathrm{bt}} = $$ 1 if block b has been mined BY period t, otherwise 0.
 
-$$ y_{\mathrm{btd}} = fraction~of~block~\textbf{b}~mined~BY~period~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
+$$y_{\mathrm{btd}} = $$ fraction of block b mined BY period t and sent to destination d. 
 
-$$ precedence~variables~(binary)~:~x_{\mathrm{bt}} $$
+precedence variables (binary) : $$x_{\mathrm{bt}}$$
 
 $$ x_{\mathrm{bt}}\in\{0,1\} $$
 
-$$ decision~variables~(continuous)~:~y_{\mathrm{btd}} $$
+decision variables (continuous) : $$y_{\mathrm{btd}}$$
 
 $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 
