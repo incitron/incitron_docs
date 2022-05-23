@@ -33,7 +33,7 @@ $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 ## Additional Variables
 --------------------
 
-$$ p_{\mathrm{btd}} = objective~value~of~block~\textbf{b}~if~it~is~mined~BY~time~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
+$$p_{\mathrm{btd}} = $$ objective value of block b if it is mined BY time t and sent to destination d. 
 
 note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
@@ -44,7 +44,7 @@ note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this de
 
 $$ b \in B : blocks;~1,...,B $$
 
-$$ \hat{b} \in \hat{B}_b :~blocks~that~must~be~mined~directly~before~block~\textbf{b};~1,...,\hat{B}_b $$
+$$ \hat{b} \in \hat{B}_b : $$  blocks that must be mined directly before block b; $$~1,...,\hat{B}_b $$
 
 $$ t \in T : time~periods;~1,...,T $$
 
