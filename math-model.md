@@ -33,7 +33,8 @@ $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 ## Additional Variables
 --------------------
 
-$$ p_{\mathrm{btd}} = discounted~value~of~block~\textbf{b}~if~it~is~mined~BY~time~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
+$$ p_{\mathrm{btd}} = objective~value~of~block~\textbf{b}~if~it~is~mined~BY~time~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
+note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
 ---------------
 
