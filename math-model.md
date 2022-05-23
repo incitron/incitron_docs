@@ -40,20 +40,20 @@ $$ p_{\mathrm{btd}} = discounted value of block b if it is mined in time t and s
 ## Indices & Sets
 --------------
 
-$$ b \in B : blocks; \; 1,...,B $$
+$$ b \in B : blocks;~1,...,B $$
 
-$$ \hat{b} \in \hat{B}_b : \; blocks \; that \; must \; be \; mined \; directly \; before \; block \; b; \; 1,...,\hat{B}_b $$
+$$ \hat{b} \in \hat{B}_b :~blocks~that~must~be~mined~directly~before~block~b;~1,...,\hat{B}_b $$
 
-$$ t \in T : time \; periods; \; 1,...,T $$
+$$ t \in T : time~periods;~1,...,T $$
 
-$$ d \in D : destinations; \; 1,...,D $$
+$$ d \in D : destinations;~1,...,D $$
 
 ----------------
 
 ## Objective Function
 ------------------
 
-$$ max \; \displaystyle\sum_{b=1}^{B} \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} p_{\mathrm{btd}} y_{\mathrm{btd}} $$
+$$ max~\displaystyle\sum_{b=1}^{B} \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} p_{\mathrm{btd}} y_{\mathrm{btd}} $$
 
 ---------------
 
@@ -66,11 +66,11 @@ $$ \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} y_{\mathrm{btd}} \leq
 
 **(2) BY Variable Sequentiality**
 
-$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}$ which is equivalent to: $x_{\mathrm{bt}} - x_{\mathrm{bt-1}} \geq 0 $$
+$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}} which is equivalent to: x_{\mathrm{bt}} - x_{\mathrm{bt-1}} \geq 0 $$
 
 **(3) BY Variable Precedences (could potentially be redundant)**
 
-$$ x_{\mathrm{bt}} \leq x_{\mathrm{\hat{b}t}}$ which is equivalent to: $x_{\mathrm{bt}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
+$$ x_{\mathrm{bt}} \leq x_{\mathrm{\hat{b}t}} which is equivalent to: x_{\mathrm{bt}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(4) Decision Variable Precedences**
 
