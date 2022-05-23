@@ -33,7 +33,7 @@ $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 ## Additional Variables
 --------------------
 
-$$ p_{\mathrm{btd}} = discounted value of block b if it is mined in time t and sent to destination d $$
+$$ p_{\mathrm{btd}} = discounted~value~of~block~b~if~it~is~mined~BY~time~t~and~sent~to~destination~d $$
 
 ---------------
 
@@ -66,11 +66,11 @@ $$ \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} y_{\mathrm{btd}} \leq
 
 **(2) BY Variable Sequentiality**
 
-$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}} which is equivalent to: x_{\mathrm{bt}} - x_{\mathrm{bt-1}} \geq 0 $$
+$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt}} - x_{\mathrm{bt-1}} \geq 0 $$
 
 **(3) BY Variable Precedences (could potentially be redundant)**
 
-$$ x_{\mathrm{bt}} \leq x_{\mathrm{\hat{b}t}} which is equivalent to: x_{\mathrm{bt}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
+$$ x_{\mathrm{bt}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~x_{\mathrm{bt}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(4) Decision Variable Precedences**
 
