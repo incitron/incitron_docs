@@ -34,6 +34,7 @@ $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 --------------------
 
 $$ p_{\mathrm{btd}} = objective~value~of~block~\textbf{b}~if~it~is~mined~BY~time~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
+
 note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
 ---------------
@@ -75,12 +76,12 @@ $$ x_{\mathrm{bt}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~x_{\mathrm
 
 **(4) Decision Variable Precedences**
 
-$$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} \leq x_{\mathrm{\hat{b}t}} which is equivalent to: $$
+$$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~$$
 $$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(5) Linking Constraint**
 
-$$ x_{\mathrm{bt}} \leq \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} which is equivalent to: $$
+$$ x_{\mathrm{bt}} \leq \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}}~which~is~equivalent~to:~$$
 $$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} - x_{\mathrm{bt}} \geq 0 $$
 
 **(6) General Side Constraints**
