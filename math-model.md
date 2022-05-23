@@ -16,9 +16,9 @@ This is a Precedence Constrained Production Scheduling Problem (PCPSP).
 ## Decision Variables
 ------------------
 
-$$ x_{\mathrm{bt}} = whether~block~b~has~been~mined~BY~period~t,~otherwise~0. $$
+$$ x_{\mathrm{bt}} = whether~block~\textbf{b}~has~been~mined~BY~period~\textbf{t},~otherwise~0. $$
 
-$$ y_{\mathrm{btd}} = fraction~of~block~b~mined~BY~period~t~and~sent~to~destination~d. $$
+$$ y_{\mathrm{btd}} = fraction~of~block~\textbf{b}~mined~BY~period~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
 
 $$ precedence~variables~(binary)~:~x_{\mathrm{bt}} $$
 
@@ -33,7 +33,7 @@ $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 ## Additional Variables
 --------------------
 
-$$ p_{\mathrm{btd}} = discounted~value~of~block~b~if~it~is~mined~BY~time~t~and~sent~to~destination~d $$
+$$ p_{\mathrm{btd}} = discounted~value~of~block~\textbf{b}~if~it~is~mined~BY~time~\textbf{t}~and~sent~to~destination~\textbf{d}. $$
 
 ---------------
 
@@ -42,7 +42,7 @@ $$ p_{\mathrm{btd}} = discounted~value~of~block~b~if~it~is~mined~BY~time~t~and~s
 
 $$ b \in B : blocks;~1,...,B $$
 
-$$ \hat{b} \in \hat{B}_b :~blocks~that~must~be~mined~directly~before~block~b;~1,...,\hat{B}_b $$
+$$ \hat{b} \in \hat{B}_b :~blocks~that~must~be~mined~directly~before~block~\textbf{b};~1,...,\hat{B}_b $$
 
 $$ t \in T : time~periods;~1,...,T $$
 
