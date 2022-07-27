@@ -10,5 +10,3 @@ has_children: false
 
 This is a list of key academic papers that guided the development of the incitron engine.
 
-
-

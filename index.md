@@ -17,7 +17,7 @@ The core engine is written in C, with a command-line interface written in C++. T
 * Manual memory management allows for granular control over allocating and freeing memory.
 * Some of the key libraries used by `incitron` (i.e., SCIP) are written in C, so it's easier to interface with these libraries.
 
-## Features
+## features
 --------
 
 Key features of the incitron engine include:
@@ -36,7 +36,8 @@ The fast solve times and accuracy of the incitron engine are driven by a suite o
 * Bienstock-Zuckerberg (BZ) algorithm
 * TopoSort heuristic algorithm
 
-## Code
+## code
 --------
 
-The full code repo is hosted on [Github](https://github.com/iainfullelove/incitron).
+The full code repo is hosted on [Github](https://github.com/incitron/incitron).
+Note for developers: you have to be granted developer access 

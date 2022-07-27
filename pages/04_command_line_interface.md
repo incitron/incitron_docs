@@ -1,16 +1,16 @@
 ---
 layout: default
-title: 4. command line interface (CLI)
+title: 4. command line interface
 nav_order: 4
 has_children: false
 ---
 
-# Command Line Interface (CLI)
+# command line interface (CLI)
 ----------
 
 incitron is usually driven through a command line interface and a JSON configuration file.
 
-## Command Line Interface (CLI) options
+## CLI options
 ----------
 
 **--help, -h**
@@ -25,7 +25,7 @@ incitron is usually driven through a command line interface and a JSON configura
 
 * use a json file as the input configuration to run the incitron algorithm
 
-## Config File Specification
+## config file specification
 ----------
 
 This section describes the JSON format used by the command-line interface version of incitron for configuring an optimisation run. Note that both the input data and configuration are contained within the same JSON file.

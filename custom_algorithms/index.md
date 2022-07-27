@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 6. custom algorithms
+title: custom_algorithms
 nav_order: 6
 has_children: false
 ---

@@ -5,17 +5,17 @@ nav_order: 3
 has_children: false
 ---
 
-# Core Incitron Library
+# core incitron library
 --------
 
-## Building & Compiling
+## building & compiling
 --------
 
 incitron is compiled using the [CMake meta-build system](https://cmake.org/).
 the core engine is developed and tested on Windows and Linux (it will most likely work on Mac, but hasn't been tested).
 MSVC 2022 is used to compile on Windows, and GCC 10 on Linux (via CMake).
 
-## Testing
+## testing
 --------
 
 the core incitron engine is tested using [catch2](https://github.com/catchorg/Catch2).
@@ -27,7 +27,7 @@ all the tests can be found in the /tests directory.
 The [SCIP library](https://www.scipopt.org/) is the core linear programming framework that incitron is built on top of (standing on the shoulders of giants...).
 To ensure the standard SCIP solver (without any incitron extensions) is functioning correctly, a series of LP and MILP models are tested.
 
-### Pseudoflow algorithm testing
+### pseudoflow algorithm testing
 --------
 
 The pseudoflow algorithm is utilised as the min-cut max-flow solver in the BZ algorithm.
@@ -37,7 +37,7 @@ The pseudoflow algorithm is utilised as the min-cut max-flow solver in the BZ al
 
 The BZ algorithm is utilised by incitron to quickly solve the linear relaxations at nodes in the branch-and-bound tree.
 
-## External Libraries
+## external libraries
 --------
 
 This section describes the dependencies for incitron, and where they can be downloaded. 

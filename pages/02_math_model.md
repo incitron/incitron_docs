@@ -7,13 +7,13 @@ has_children: false
 
 {% include mathjax.html %}
 
-# Mathematical Model
+# mathematical model
 ----------
 
 This page describes the mathematical representation of the MILP model that is solved by the incitron engine.
 This is a Precedence Constrained Production Scheduling Problem (PCPSP).
 
-## Decision Variables
+## decision variables
 ------------------
 
 $$x_{\mathrm{bt}} = $$ 1 if block b has been mined BY period t, otherwise 0.
@@ -30,7 +30,7 @@ $$ y_{\mathrm{btd}}\in[ \,0,1] $$
 
 -----------------
 
-## Additional Variables
+## additional variables
 --------------------
 
 $$p_{\mathrm{btd}} = $$ objective value of block b if it is mined BY time t and sent to destination d. 
@@ -39,7 +39,7 @@ note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this de
 
 ---------------
 
-## Indices & Sets
+## indices & sets
 --------------
 
 $$ b \in B : blocks;~1,...,B $$
@@ -52,14 +52,14 @@ $$ d \in D : destinations;~1,...,D $$
 
 ----------------
 
-## Objective Function
+## objective function
 ------------------
 
 $$ max~\displaystyle\sum_{b=1}^{B} \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} p_{\mathrm{btd}} y_{\mathrm{btd}} $$
 
 ---------------
 
-## Constraints
+## constraints
 -----------
 
 **(1) Mine Each Block Only Once**
