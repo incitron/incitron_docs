@@ -1,7 +1,7 @@
 ---
 layout: default
-title: core library
-nav_order: 4
+title: 3. core library
+nav_order: 3
 has_children: false
 ---
 
@@ -45,7 +45,6 @@ For original archived copies of the external libraries please see the directory 
 
 |    Library                                                                |                Description/Use                | Language |   Version   |   Date Downloaded  |
 |---------------------------------------------------------------------------|-----------------------------------------------|----------|-------------|--------------------|
-| [pseudoflow](https://github.com/hochbaumGroup/pseudoflow-parametric-cut)  | solving LP sub-problems in BZ algorithm       |    C     | no versions | 21/12/2020         |
 | [catch2](https://github.com/catchorg/Catch2)                              | unit testing framework                        |    C++   | 2.13.4      | 08/01/2020         |
 | [scip](https://www.scipopt.org/index.php#download)                        | linear programming framework                  |    C     | 7.0.2       | 29/01/2021         |
 | [soplex](https://soplex.zib.de/index.php#download)                        | linear program solver                         |    C++   | 5.0.2       | 29/01/2021         |

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: command line interface (CLI)
-nav_order: 5
+title: 4. command line interface (CLI)
+nav_order: 4
 has_children: false
 ---
 

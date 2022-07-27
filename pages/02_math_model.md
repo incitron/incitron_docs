@@ -1,7 +1,7 @@
 ---
 layout: default
-title: math model
-nav_order: 3
+title: 2. math model
+nav_order: 2
 has_children: false
 ---
 
