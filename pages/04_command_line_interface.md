@@ -22,9 +22,9 @@ An example of passing a JSON configuration file to the CLI is shown below.
 
 |  CLI long options   |  CLI short options  | Description                                                                                          |
 |---------------------|---------------------|------------------------------------------------------------------------------------------------------|
-| --help              | -h                  | prints to the console information about incitron engine and the list of command line options         |
-| --version           | -v                  | print the incitron engine version to the console                                                     |
-| --configfile        | -c                  | use a json file as the input configuration to run the incitron algorithm                             |
+| \-\-help            | \-h                 | prints to the console information about incitron engine and the list of command line options         |
+| \-\-version         | \-v                 | print the incitron engine version to the console                                                     |
+| \-\-configfile      | \-c                 | use a json file as the input configuration to run the incitron algorithm                             |
 
 ## config file specification
 ----------
