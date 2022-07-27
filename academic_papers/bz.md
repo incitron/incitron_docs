@@ -8,4 +8,4 @@ has_children: false
 # bienstock-zuckerberg algorithm (BZ)
 --------
 
-<object data="/academic_papers/papers/bz/Bienstock_Zuckerberg_2009.pdf" type="application/pdf" width="1000" height="1000"></object>
+<object data="/academic_papers/papers/bz/Bienstock_Zuckerberg_2009.pdf" type="application/pdf" width="100%" height="100%"></object>
