@@ -1,7 +1,7 @@
 ---
 layout: default
 title: cuts
-parent: academic papers
+parent: 6. custom algorithms
 has_children: false
 ---
 

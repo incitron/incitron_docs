@@ -1,7 +1,7 @@
 ---
 layout: default
 title: heuristics
-parent: academic papers
+parent: 6. custom algorithms
 has_children: false
 ---
 
