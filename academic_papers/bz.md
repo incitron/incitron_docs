@@ -8,6 +8,4 @@ has_children: false
 # bienstock-zuckerberg algorithm (BZ)
 --------
 
-[Bienstock_Zuckerberg_2009.pdf]({{ site.url }}/academic_papers/papers/bz/Bienstock_Zuckerberg_2009.pdf)
-
-<object data="/academic_papers/papers/bz/Bienstock_Zuckerberg_2009.pdf" type="application/pdf" width="100%" style="height:50vh"></object>
+[Bienstock_Zuckerberg_2009.pdf]({{ site.url }}/academic_papers/papers/bz/Bienstock_Zuckerberg_2009.pdf){:target="_blank"}
