@@ -11,7 +11,20 @@ has_children: false
 ----------
 
 This page describes the mathematical representation of the MILP model that is solved by the incitron engine.
-This is a Precedence Constrained Production Scheduling Problem (PCPSP).
+This is a Precedence Constrained Production Scheduling Problem (PCPSP) with stockpiling.
+
+## indices & sets
+--------------
+
+$$ b \in B : blocks; $$~1,...,B $$
+
+$$ \hat{b} \in \hat{B}_b : $$  blocks that must be mined directly before block b; $$~1,...,\hat{B}_b $$
+
+$$ t \in T : time periods; $$~1,...,T $$
+
+$$ d \in D : destinations; $$~1,...,D $$
+
+----------------
 
 ## decision variables
 ------------------
@@ -38,19 +51,6 @@ $$p_{\mathrm{btd}} = $$ objective value of block b if it is mined BY time t and 
 note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
 ---------------
-
-## indices & sets
---------------
-
-$$ b \in B : blocks;~1,...,B $$
-
-$$ \hat{b} \in \hat{B}_b : $$  blocks that must be mined directly before block b; $$~1,...,\hat{B}_b $$
-
-$$ t \in T : time~periods;~1,...,T $$
-
-$$ d \in D : destinations;~1,...,D $$
-
-----------------
 
 ## objective function
 ------------------
