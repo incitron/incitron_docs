@@ -13,17 +13,18 @@ incitron is usually driven through a command line interface and a JSON configura
 ## CLI options
 ----------
 
-**--help, -h**
+The table below lists out all the command line options that can be passed to the command line interface.
+An example of passing a JSON configuration file to the CLI is shown below.
 
-* prints to the console information about incitron engine and the list of command line options
+```bash
+./incitron --configfile scenario1.json
+```
 
-**--version, -v**
-
-* print the incitron engine version to the console
-
-**--configfile, -c**
-
-* use a json file as the input configuration to run the incitron algorithm
+|  CLI long options   |  CLI short options  | Description                                                                                          |
+|---------------------|---------------------|------------------------------------------------------------------------------------------------------|
+| --help              | -h                  | prints to the console information about incitron engine and the list of command line options         |
+| --version           | -v                  | print the incitron engine version to the console                                                     |
+| --configfile        | -c                  | use a json file as the input configuration to run the incitron algorithm                             |
 
 ## config file specification
 ----------
