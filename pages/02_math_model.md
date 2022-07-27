@@ -16,13 +16,13 @@ This is a Precedence Constrained Production Scheduling Problem (PCPSP) with stoc
 ## indices & sets
 --------------
 
-$$ b \in B : blocks; $$~1,...,B $$
+$$ b \in B : $$ blocks; $$~1,...,B $$
 
 $$ \hat{b} \in \hat{B}_b : $$  blocks that must be mined directly before block b; $$~1,...,\hat{B}_b $$
 
-$$ t \in T : time periods; $$~1,...,T $$
+$$ t \in T : $$ time periods; $$~1,...,T $$
 
-$$ d \in D : destinations; $$~1,...,D $$
+$$ d \in D : $$ destinations; $$~1,...,D $$
 
 ----------------
 
