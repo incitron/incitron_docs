@@ -8,4 +8,4 @@ has_children: false
 # LP relaxation (BZ algorithm)
 --------
 
-[Bienstock_Zuckerberg_2009.pdf]({{ site.url }}/academic_papers/papers/bz/Bienstock_Zuckerberg_2009.pdf){:target="_blank"}
+[Bienstock_Zuckerberg_2009.pdf]({{ site.url }}/assets/papers/bz/Bienstock_Zuckerberg_2009.pdf){:target="_blank"}
