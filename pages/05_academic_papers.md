@@ -9,4 +9,13 @@ has_children: false
 --------
 
 This is a list of key academic papers that guided the development of the incitron engine.
+They're in no particular order.
 
+PCPSP = precedence constraint production scheduling problem
+BZ = Bienstock-Zuckerberg algorithm
+
+| Author                     | Year  | Title                                                                                                                                                     | Topics    |
+|----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| Bienstock, Zuckerberg      | 2009  | [Solving LP Relaxations of Large-Scale Precedence Constrained Problems]({{ site.url }}/assets/papers/bz/Bienstock_Zuckerberg_2009.pdf){:target="_blank"}  | BZ, PCPSP |
+| Amankwah, et. al.          | 2014  | [A maximum flow formulation of a multi-period open-pit mining problem]({{ site.url }}/assets/papers/bz/Amankwah_etal_2014.pdf){:target="_blank"}          | PCPSP     |
+| Munoz, et. al.             | 2017  | [A study of the Bienstock-Zuckerberg algorithm]({{ site.url }}/assets/papers/bz/Munoz_etal_2017.pdf){:target="_blank"}                                    | BZ, PCPSP |
