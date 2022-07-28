@@ -6,12 +6,10 @@ has_children: false
 ---
 
 # command line interface (CLI)
-----------
 
 incitron is usually driven through a command line interface and a JSON configuration file.
 
 ## CLI options
-----------
 
 The table below lists out all the command line options that can be passed to the command line interface.
 An example of passing a JSON configuration file to the CLI is shown below.
@@ -27,8 +25,6 @@ An example of passing a JSON configuration file to the CLI is shown below.
 | \-\-configfile      | \-c                 | use a json file as the input configuration to run the incitron algorithm                             |
 
 ## config file specification
-----------
 
 This section describes the JSON format used by the command-line interface version of incitron for configuring an optimisation run. Note that both the input data and configuration are contained within the same JSON file.
-
 
