@@ -99,27 +99,27 @@ $$ y_{\mathrm{bptd}} \leq y_{\mathrm{bptd+1}}~which~is~equivalent~to:~y_{\mathrm
 
 $$For~b \in B,~p \in P_b,~t \in T,~d = D,~s = 1: $$
 
-$$ y_{\mathrm{bptD}} \leq y_{\mathrm{bpts}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - y_{\mathrm{bpts}} \leq 0 $$
+$$ y_{\mathrm{bptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - z_{\mathrm{bpts}} \leq 0 $$
 
 $$For~b \in B,~p \in P_b,~t \in T,~s \in \{ s,...,S-1 \}: $$
 
-$$ y_{\mathrm{bpts}} \leq y_{\mathrm{bpts+1}}~which~is~equivalent~to:~y_{\mathrm{bpts}} - y_{\mathrm{bpts+1}} \leq 0 $$
+$$ z_{\mathrm{bpts}} \leq z_{\mathrm{bpts+1}}~which~is~equivalent~to:~z_{\mathrm{bpts}} - z_{\mathrm{bpts+1}} \leq 0 $$
 
 $$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~s = S: $$
 
-$$ y_{\mathrm{bptS}} \leq y_{\mathrm{bp+1tS}}~which~is~equivalent~to:~y_{\mathrm{bptS}} - y_{\mathrm{bp+1tS}} \leq 0 $$
+$$ z_{\mathrm{bptS}} \leq z_{\mathrm{bp+1tS}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bp+1tS}} \leq 0 $$
 
 **(3) Precedence Constraint**
 
 $$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~s = S: $$
 
-$$ y_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~y_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
+$$ z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(4) Linking Constraint**
 
 $$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
-$$ y_{\mathrm{bptS}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~y_{\mathrm{bptS}} - x_{\mathrm{bt}} \leq 0 $$
+$$ z_{\mathrm{bptS}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{bt}} \leq 0 $$
 
 **(5) Equal-Parcel Constraint**
 
@@ -127,9 +127,19 @@ This constraint ensures that parcels in a block are mined in equal proportions (
 
 $$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
-$$ y_{\mathrm{bp-1tS}} \leq y_{\mathrm{bptS}}~which~is~equivalent~to:~y_{\mathrm{bp-1tS}} - y_{\mathrm{bptS}} \leq 0 $$
+$$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm{bp-1tS}} - z_{\mathrm{bptS}} \leq 0 $$
 
-**(6) General Side Constraints**
+**(6) Stockpile Flow Balancing Constraint**
+
+This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile.
+
+$$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
+
+$$ z_{\mathrm{sptd}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptd}} - z_{\mathrm{bpts}} \leq 0 $$
+
+
+
+**(8) General Side Constraints**
 
 * Attribute Sum
 * Attribute Average
