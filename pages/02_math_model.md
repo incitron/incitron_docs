@@ -28,17 +28,17 @@ $$ s \in S : $$ stockpiles; $$~1,...,S $$
 
 ## decision variables (by-format)
 
-$$x_{\mathrm{bt}} = $$ 1 if block `b` has been mined by period `t`, otherwise 0.
+$$x_{\mathrm{bt}} : $$ 1 if block `b` has been mined by period `t`, otherwise 0.
 
-$$y_{\mathrm{bptd}} = $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
+$$y_{\mathrm{bptd}} : $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
 
-$$z_{\mathrm{bpts}} = $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to stockpile `s`. 
+$$z_{\mathrm{bpts}} : $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to stockpile `s`. 
 
-$$z_{\mathrm{sptd}} = $$ fraction of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
+$$z_{\mathrm{sptd}} : $$ fraction of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
 
-$$c_{\mathrm{con}} = $$ 1 if capital decision `c` has been purchased to expand the capacity of a set of constraints `con`, otherwise 0.
+$$c_{\mathrm{con}} : $$ 1 if capital decision `c` has been purchased to expand the capacity of a set of constraints `con`, otherwise 0.
 
-$$f_{\mathrm{bptd}} = $$ 1 if fraction of subset of parcels `p` contained in blocks `b` mined by period `t` and sent to subset of destinations `d` is greater than zero, otherwise 0.
+$$f_{\mathrm{bptd}} : $$ 1 if fraction of subset of parcels `p` contained in blocks `b` mined by period `t` and sent to subset of destinations `d` is greater than zero, otherwise 0.
 
 precedence variables (binary) : $$ x_{\mathrm{bt}}\in\{0,1\} $$
 
