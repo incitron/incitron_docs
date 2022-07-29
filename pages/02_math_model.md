@@ -10,7 +10,7 @@ has_children: false
 # mathematical model
 
 This page describes the mathematical representation of the MILP model that is solved by the incitron engine.
-This is a Precedence Constrained Production Scheduling Problem (PCPSP) with stockpiling.
+This is a Precedence Constrained Production Scheduling Problem (PCPSP) with stockpiling. Please take note of the special use of completing mining blocks and parcels "by" a time period, rather than "at" a time period.
 
 ## indices & sets
 
@@ -54,13 +54,21 @@ fixed cost variables (binary) : $$ f_{\mathrm{bptd}}\in\{0,1\} $$
 
 ## additional variables
 
-$$p_{\mathrm{bptd}} : $$ objective value of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
+$$p_{\mathrm{bptd}}^y : $$ objective value of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
+
+$$p_{\mathrm{bpts}}^z : $$ objective value of parcel `p` contained in block `b` mined by period `t` and sent to stockpile `s`. 
+
+$$p_{\mathrm{sptd}}^z : $$ objective value of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
+
+$$p_{\mathrm{con}}^c : $$ objective value of capital decision `c`. 
+
+$$p_{\mathrm{bptd}}^f : $$ objective value of fixed cost `f`. 
 
 note that $$p_{\mathrm{bptd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
 ## objective function
 
-$$ max~\displaystyle\sum_{b=1}^{B} \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} p_{\mathrm{btd}} y_{\mathrm{btd}} $$
+$$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{bptd}} y_{\mathrm{bptd}} $$
 
 ## constraints
 
