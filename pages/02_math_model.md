@@ -126,3 +126,23 @@ $$ y_{\mathrm{bp-1tD}} \leq y_{\mathrm{bptD}}~which~is~equivalent~to:~y_{\mathrm
 * Mine Block After Period
 * Mine Block Before Period
 
+# additional notes
+
+This section contains some additional notes regarding the mathematical model behind incitron.
+Specific topics include:
+* [Why we define blocks and parcels seperately](#blocks-&-parcels)
+* [AT-format vs. BY-format](#AT-format-vs.-BY-format)
+* [Stockpiling](#Stockpiling)
+
+## blocks & parcels
+
+
+
+## AT-format vs. BY-format
+
+
+
+## Stockpiling
+
+
+
