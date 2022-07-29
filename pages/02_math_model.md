@@ -91,33 +91,43 @@ $$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt-
 
 **(2) Mine Each Parcel Only Once (finitude constraint)**
 
+Note here we treat sending parcels to stockpiles as a seperate set of constraints (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another "destination".
+
 $$For~b \in B,~p \in P_b,~t \in T,~d \in \{ 1,...,D-1 \}: $$
 
 $$ y_{\mathrm{bptd}} \leq y_{\mathrm{bptd+1}}~which~is~equivalent~to:~y_{\mathrm{bptd}} - y_{\mathrm{bptd+1}} \leq 0 $$
 
-$$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~d = D: $$
+$$For~b \in B,~p \in P_b,~t \in T,~d = D,~s = 1: $$
 
-$$ y_{\mathrm{bptD}} \leq y_{\mathrm{bp+1tD}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - y_{\mathrm{bp+1tD}} \leq 0 $$
+$$ y_{\mathrm{bptD}} \leq y_{\mathrm{bpts}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - y_{\mathrm{bpts}} \leq 0 $$
+
+$$For~b \in B,~p \in P_b,~t \in T,~s \in \{ s,...,S-1 \}: $$
+
+$$ y_{\mathrm{bpts}} \leq y_{\mathrm{bpts+1}}~which~is~equivalent~to:~y_{\mathrm{bpts}} - y_{\mathrm{bpts+1}} \leq 0 $$
+
+$$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~s = S: $$
+
+$$ y_{\mathrm{bptS}} \leq y_{\mathrm{bp+1tS}}~which~is~equivalent~to:~y_{\mathrm{bptS}} - y_{\mathrm{bp+1tS}} \leq 0 $$
 
 **(3) Precedence Constraint**
 
-$$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~d = D: $$
+$$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~s = S: $$
 
-$$ y_{\mathrm{bptD}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
+$$ y_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~y_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(4) Linking Constraint**
 
-$$For~b \in B,~p \in P_b,~t \in T,~d = D: $$
+$$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
-$$ y_{\mathrm{bptD}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - x_{\mathrm{bt}} \leq 0 $$
+$$ y_{\mathrm{bptS}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~y_{\mathrm{bptS}} - x_{\mathrm{bt}} \leq 0 $$
 
 **(5) Equal-Parcel Constraint**
 
 This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore first and leave all the waste)
 
-$$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~d = D: $$
+$$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
-$$ y_{\mathrm{bp-1tD}} \leq y_{\mathrm{bptD}}~which~is~equivalent~to:~y_{\mathrm{bp-1tD}} - y_{\mathrm{bptD}} \leq 0 $$
+$$ y_{\mathrm{bp-1tS}} \leq y_{\mathrm{bptS}}~which~is~equivalent~to:~y_{\mathrm{bp-1tS}} - y_{\mathrm{bptS}} \leq 0 $$
 
 **(6) General Side Constraints**
 
