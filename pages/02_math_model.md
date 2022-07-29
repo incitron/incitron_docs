@@ -119,7 +119,7 @@ $$ z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~z_{\math
 
 $$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
-$$ z_{\mathrm{bptS}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{bt}} \leq 0 $$
+$$ x_{\mathrm{bt}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~x_{\mathrm{bt}} - z_{\mathrm{bptS}} \leq 0 $$
 
 **(5) Equal-Parcel Constraint**
 
@@ -129,13 +129,17 @@ $$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
 $$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm{bp-1tS}} - z_{\mathrm{bptS}} \leq 0 $$
 
-**(6) Stockpile Flow Balancing Constraint**
+**(6) Stockpile Flow-Balancing Constraint**
 
 This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile.
 
 $$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
 $$ z_{\mathrm{sptd}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptd}} - z_{\mathrm{bpts}} \leq 0 $$
+
+**(7) Stockpile Mixing Constraint**
+
+This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from the stockpile in each period must be the same).
 
 
 
