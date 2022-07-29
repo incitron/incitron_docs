@@ -130,16 +130,34 @@ $$ y_{\mathrm{bp-1tD}} \leq y_{\mathrm{bptD}}~which~is~equivalent~to:~y_{\mathrm
 
 This section contains some additional notes regarding the mathematical model behind incitron.
 Specific topics include:
-* [Why we define blocks and parcels seperately](#blocks-&-parcels)
+* [definition of blocks, parcels and destinations](#blocks,-parcels,-destinations)
+* [why we define blocks and parcels seperately](#blocks,-parcels,-destinations)
 * [at-format & by-format](#at-format-&-by-format)
 * [stockpiling](#stockpiling)
 
-## blocks & parcels
+## blocks, parcels, destinations
 
+Mine planning is a classic example of the Precedence Constrained Production Scheduling Problem (PCPSP), where there are a set of activities (or "jobs") that must scheduled to occur over a number of periods, with precedences between the activities. Further, each activity can have a number of different methods (or "ways", "modes") that it can be completed, and we must also choose the optimal method for completing said activity.
 
+Within mine planning, the most common activity that must be scheduled is the mining of a "block" of earth. Note here that a "block" is not restricted to meaning an SMU block within a blockmodel, or even a block in an open pit mine. A "block" can represent any physical volume of rock, including:
+* an SMU block on a bench
+* a mining polygon on a bench in an open pit mine
+* a whole bench in an open pit mine
+* a whole phase at an open pit mine
+* a stope at an underground mine
+* a section of development at an underground mine
+* a whole underground panel of mining
+* a panel of a block cave mine
+* etc...
+
+Once a block has been mined, there is a secondary decision that must be made as to what should be done with the material, typically referred to as the "destination" of the block. Again, note here that a "destination" is not just restricted to a physical destination at a mine (i.e., the waste dump, the plant, etc), but should encompass any downstream decisions that are required to be made once the block has been mined. Hence, the "destination" should encompass a `set` of activities that could be performed with the mine block. There are typically many different "destinations" that a block can take. A granular example of alternative "destinations" to cement the theory is as follows:
+1. A block is mined using a face shovel and sent to the processing plant (destination: block->face shovel->plant)
+2. A block is mined using a front-end loader and sent to the processing plant (destination: block->front-end loader-> plant)
+3. A block is mine and sent to the waste dump (destination: block->waste dump)
 
 ## at-format & by-format
 
+decisions are cumulative
 
 
 ## stockpiling
