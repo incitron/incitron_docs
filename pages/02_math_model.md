@@ -78,7 +78,7 @@ For $$ b \in B : $$, $$ t \in \{ 1,...,T-1 \} $$
 
 $$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}} $$ which is equivalent to: $$ x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
 
-**(2) Mine Each Parcel Only Once**
+**(2) Mine Each Parcel Only Once (finitude)**
 
 $$ \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} y_{\mathrm{btd}} \leq 1 $$
 
