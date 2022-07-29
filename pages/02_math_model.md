@@ -59,7 +59,7 @@ decision variables (continuous) : $$ z_{\mathrm{bpts}}\in[ \,0,1] $$
 
 decision variables (continuous) : $$ z_{\mathrm{sptd}}\in[ \,0,1] $$
 
-capital decision variables (binary) : $$ u_{\mathrm{c\hat{q}}} $$
+capital decision variables (binary) : $$ u_{\mathrm{c\hat{q}}}\in\{0,1\} $$
 
 fixed cost variables (binary) : $$ v_{\mathrm{f\hat{p}_f\hat{d}_f}}\in\{0,1\} $$
 
@@ -131,18 +131,18 @@ $$ y_{\mathrm{bp-1tD}} \leq y_{\mathrm{bptD}}~which~is~equivalent~to:~y_{\mathrm
 This section contains some additional notes regarding the mathematical model behind incitron.
 Specific topics include:
 * [Why we define blocks and parcels seperately](#blocks-&-parcels)
-* [AT-format vs. BY-format](#AT-format-vs.-BY-format)
-* [Stockpiling](#Stockpiling)
+* [at-format & by-format](#at-format-&-by-format)
+* [stockpiling](#stockpiling)
 
 ## blocks & parcels
 
 
 
-## AT-format vs. BY-format
+## at-format & by-format
 
 
 
-## Stockpiling
+## stockpiling
 
 
 
