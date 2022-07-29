@@ -38,7 +38,7 @@ $$z_{\mathrm{sptd}} = $$ fraction of parcel `p` contained in stockpile `s` recla
 
 $$c_{\mathrm{con}} = $$ 1 if capital decision `c` has been purchased to expand the capacity of a set of constraints `con`, otherwise 0.
 
-$$f_{\mathrm{bptd}} = $$ 1 if fraction of parcel `p` contained in block `b` mined by period `t` and sent to destination `d` is greater than zero, otherwise 0.
+$$f_{\mathrm{bptd}} = $$ 1 if fraction of subset of parcels `p` contained in blocks `b` mined by period `t` and sent to subset of destinations `d` is greater than zero, otherwise 0.
 
 precedence variables (binary) : $$ x_{\mathrm{bt}}\in\{0,1\} $$
 
