@@ -74,7 +74,7 @@ $$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P} \displaystyle\sum_{
 
 **(1) Mine Each Block Only Once (finitude)**
 
-For $$ b \in B : $$, $$ t \in \{ 1,...,T-1 \} $$
+For $$b \in B$$, $$t \in \{ 2,...,T \}$$:
 
 $$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}} $$ which is equivalent to: $$ x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
 
