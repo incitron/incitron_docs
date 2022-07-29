@@ -18,23 +18,39 @@ $$ b \in B : $$ blocks; $$~1,...,B $$
 
 $$ \hat{b} \in \hat{B}_b : $$  blocks that must be mined directly before block b; $$~1,...,\hat{B}_b $$
 
+$$ p \in P : $$ parcels contained within block b; $$~1,...,P $$
+
 $$ t \in T : $$ time periods; $$~1,...,T $$
 
 $$ d \in D : $$ destinations; $$~1,...,D $$
 
-## decision variables
+$$ s \in S : $$ stockpiles; $$~1,...,S $$
 
-$$x_{\mathrm{bt}} = $$ 1 if block b has been mined BY period t, otherwise 0.
+## decision variables (by-format)
 
-$$y_{\mathrm{btd}} = $$ fraction of block b mined BY period t and sent to destination d. 
+$$x_{\mathrm{bt}} = $$ 1 if block `b` has been mined by period `t`, otherwise 0.
 
-precedence variables (binary) : $$x_{\mathrm{bt}}$$
+$$y_{\mathrm{bptd}} = $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
 
-$$ x_{\mathrm{bt}}\in\{0,1\} $$
+$$z_{\mathrm{bpts}} = $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to stockpile `s`. 
 
-decision variables (continuous) : $$y_{\mathrm{btd}}$$
+$$z_{\mathrm{sptd}} = $$ fraction of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
 
-$$ y_{\mathrm{btd}}\in[ \,0,1] $$
+$$c_{\mathrm{con}} = $$ 1 if capital decision `c` has been purchased to expand the capacity of a set of constraints `con`, otherwise 0.
+
+$$f_{\mathrm{bptd}} = $$ 1 if fraction of parcel `p` contained in block `b` mined by period `t` and sent to destination `d` is greater than zero, otherwise 0.
+
+precedence variables (binary) : $$ x_{\mathrm{bt}}\in\{0,1\} $$
+
+decision variables (continuous) : $$ y_{\mathrm{bptd}}\in[ \,0,1] $$
+
+decision variables (continuous) : $$ z_{\mathrm{bpts}}\in[ \,0,1] $$
+
+decision variables (continuous) : $$ z_{\mathrm{sptd}}\in[ \,0,1] $$
+
+capital decision variables (binary) : $$ c_{\mathrm{con}}\in\{0,1\} $$
+
+fixed cost variables (binary) : $$ f_{\mathrm{bptd}}\in\{0,1\} $$
 
 ## additional variables
 
