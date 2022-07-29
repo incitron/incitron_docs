@@ -137,7 +137,7 @@ Specific topics include:
 
 ## blocks, parcels, destinations
 
-Mine planning is a classic example of the Precedence Constrained Production Scheduling Problem (PCPSP), where there are a set of activities (or "jobs") that must scheduled to occur over a number of periods, with precedences between the activities. Further, each activity can have a number of different methods (or "ways", "modes") that it can be completed, and we must also choose the optimal method for completing said activity.
+Mine planning is a classic example of the Precedence Constrained Production Scheduling Problem (PCPSP), where there are a set of activities (or "jobs") that must be scheduled to occur over a number of periods, with precedences between the activities. Further, each activity can have a number of different methods (or "ways", "modes") that it can be completed, and we must also choose the optimal method for completing said activity.
 
 Within mine planning, the most common activity that must be scheduled is the mining of a "block" of earth. Note here that a "block" is not restricted to meaning an SMU block within a blockmodel, or even a block in an open pit mine. A "block" can represent any physical volume of rock, including:
 * an SMU block on a bench
