@@ -17,7 +17,7 @@ $$ b \in B : $$ blocks; $$~1,...,B $$
 
 $$ \hat{b} \in \hat{B}_b : $$  blocks that must be mined directly before block b; $$~1,...,\hat{B}_b $$
 
-$$ p \in P : $$ parcels contained within block b; $$~1,...,P $$
+$$ p \in P_b : $$ parcels contained within block b; $$~1,...,P_b $$
 
 $$ t \in T : $$ time periods; $$~1,...,T $$
 
@@ -33,7 +33,7 @@ $$ \hat{q}_c \in \hat{Q}_c : $$ side constraints expanded by purchasing capital 
 
 $$ f \in F : $$ fixed costs; $$~1,...,F $$
 
-$$ \hat{p}_f \in \hat{P}_f : $$ parcels that can trigger fixed cost f; $$~1,...,\hat{P}_f ; \hat{P}_f \subseteq P $$
+$$ \hat{p}_f \in \hat{P}_bf : $$ parcels that can trigger fixed cost f; $$~1,...,\hat{P}_bf ; \hat{P}_bf \subseteq P_b $$
 
 $$ \hat{d}_f \in \hat{D}_f : $$ destinations that can trigger fixed cost f; $$~1,...,\hat{D}_f ; \hat{D}_f \subseteq D $$
 
@@ -79,35 +79,45 @@ note that $$p$$ is usually the discounted value of making this decision, however
 
 ## objective function (by-format)
 
-$$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{bptd}}^y y_{\mathrm{bptd}} + \\~~~~~~~~ \displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P} \displaystyle\sum_{t\in T} \displaystyle\sum_{s\in S} p_{\mathrm{bpts}}^z z_{\mathrm{bpts}} + \\~~~~~~~~ \displaystyle\sum_{s\in S} \displaystyle\sum_{p\in P} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{sptd}}^z z_{\mathrm{sptd}} + \\~~~~~~~~ \displaystyle\sum_{c\in C} p_{\mathrm{c\hat{q}}}^u + \\~~~~~~~~ \displaystyle\sum_{f\in F} p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v $$
+$$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{bptd}}^y y_{\mathrm{bptd}} + \\~~~~~~~~ \displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{s\in S} p_{\mathrm{bpts}}^z z_{\mathrm{bpts}} + \\~~~~~~~~ \displaystyle\sum_{s\in S} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{sptd}}^z z_{\mathrm{sptd}} + \\~~~~~~~~ \displaystyle\sum_{c\in C} p_{\mathrm{c\hat{q}}}^u + \\~~~~~~~~ \displaystyle\sum_{f\in F} p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v $$
 
 ## constraints (by-format)
 
-**(1) Mine Each Block Only Once (finitude)**
+**(1) Mine Each Block Only Once (finitude constraint)**
 
 $$For~b \in B,~t \in \{ 2,...,T \}: $$
 
 $$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
 
-**(2) Mine Each Parcel Only Once (finitude)**
+**(2) Mine Each Parcel Only Once (finitude constraint)**
 
-$$For~b \in B,~p \in P,~t \in T,~d \in \{ 1,...,D-1 \}: $$
+$$For~b \in B,~p \in P_b,~t \in T,~d \in \{ 1,...,D-1 \}: $$
 
 $$ y_{\mathrm{bptd}} \leq y_{\mathrm{bptd+1}}~which~is~equivalent~to:~y_{\mathrm{bptd}} - y_{\mathrm{bptd+1}} \leq 0 $$
 
-$$For~b \in B,~p \in P,~t \in \{ 1,...,T-1 \},~d = D: $$
+$$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~d = D: $$
 
-$$ y_{\mathrm{bptd}} \leq y_{\mathrm{bp+1td}}~which~is~equivalent~to:~y_{\mathrm{bptd}} - y_{\mathrm{bp+1td}} \leq 0 $$
+$$ y_{\mathrm{bptD}} \leq y_{\mathrm{bp+1tD}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - y_{\mathrm{bp+1tD}} \leq 0 $$
 
-**(3) Precedences**
+**(3) Precedence Constraint**
 
-$$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~$$
-$$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
+$$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~d = D: $$
+
+$$ y_{\mathrm{bptD}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(4) Linking Constraint**
 
-$$ x_{\mathrm{bt}} \leq \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}}~which~is~equivalent~to:~$$
-$$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} - x_{\mathrm{bt}} \geq 0 $$
+$$For~b \in B,~p \in P_b,~t \in T,~d = D: $$
+
+$$ y_{\mathrm{bptD}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - x_{\mathrm{bt}} \leq 0 $$
+
+**(5) Equal-Parcel Constraint**
+
+This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore first and leave all the waste)
+
+$$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~d = D: $$
+
+$$ y_{\mathrm{bp-1tD}} \leq y_{\mathrm{bptD}}~which~is~equivalent~to:~y_{\mathrm{bp-1tD}} - y_{\mathrm{bptD}} \leq 0 $$
 
 **(6) General Side Constraints**
 
