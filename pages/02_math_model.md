@@ -85,24 +85,26 @@ $$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P} \displaystyle\sum_{
 
 **(1) Mine Each Block Only Once (finitude)**
 
-For $$b \in B$$, $$t \in \{ 2,...,T \}$$:
+$$For~b \in B,~t \in \{ 2,...,T \}: $$
 
-$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}} $$ which is equivalent to: $$ x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
+$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
 
 **(2) Mine Each Parcel Only Once (finitude)**
 
-$$ \displaystyle\sum_{t=1}^{T} \displaystyle\sum_{d=1}^{D} y_{\mathrm{btd}} \leq 1 $$
+$$For~b \in B,~p \in P,~t \in T,~d \in \{ 1,...,D-1 \}: $$
 
-**(2) BY Variable Sequentiality**
+$$ y_{\mathrm{bptd}} \leq y_{\mathrm{bptd+1}}~which~is~equivalent~to:~y_{\mathrm{bptd}} - y_{\mathrm{bptd+1}} \leq 0 $$
 
-$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt}} - x_{\mathrm{bt-1}} \geq 0 $$
+$$For~b \in B,~p \in P,~t \in \{ 1,...,T-1 \},~d = D: $$
 
-**(4) Decision Variable Precedences**
+$$ y_{\mathrm{bptd}} \leq y_{\mathrm{bp+1td}}~which~is~equivalent~to:~y_{\mathrm{bptd}} - y_{\mathrm{bp+1td}} \leq 0 $$
+
+**(3) Precedences**
 
 $$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~$$
 $$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
-**(5) Linking Constraint**
+**(4) Linking Constraint**
 
 $$ x_{\mathrm{bt}} \leq \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}}~which~is~equivalent~to:~$$
 $$ \displaystyle\sum_{\tau=1}^{t} \displaystyle\sum_{d=1}^{D} y_{\mathrm{b \tau d}} - x_{\mathrm{bt}} \geq 0 $$
