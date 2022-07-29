@@ -47,6 +47,8 @@ $$z_{\mathrm{bpts}} : $$ fraction of parcel `p` contained in block `b` mined by 
 
 $$z_{\mathrm{sptd}} : $$ fraction of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
 
+$$f_{\mathrm{st}} : $$ relative proportion of parcels from the stockpile `s` reclaimed in time period `t` (i.e., "out-fraction").
+
 $$u_{\mathrm{c\hat{q}}} : $$ 1 if capital decision `c` has been purchased to expand the capacity of a set of constraints $$\hat{q}$$, otherwise 0.
 
 $$v_{\mathrm{f\hat{p}_f\hat{d}_f}} : $$ 1 if fixed cost has been paid to allow subset of parcels $$\hat{p}_f$$ contained in blocks `b` mined by period `t` to be sent to subset of destinations $$\hat{d}_f$$, otherwise 0.
@@ -55,9 +57,11 @@ precedence variables (binary) : $$ x_{\mathrm{bt}}\in\{0,1\} $$
 
 decision variables (continuous) : $$ y_{\mathrm{bptd}}\in[ \,0,1] $$
 
-decision variables (continuous) : $$ z_{\mathrm{bpts}}\in[ \,0,1] $$
+stockpiling variables (continuous) : $$ z_{\mathrm{bpts}}\in[ \,0,1] $$
 
-decision variables (continuous) : $$ z_{\mathrm{sptd}}\in[ \,0,1] $$
+reclaiming variables (continuous) : $$ z_{\mathrm{sptd}}\in[ \,0,1] $$
+
+reclaiming proportions (continous) : $$f_{\mathrm{st}}\in[ \,0,1] $$
 
 capital decision variables (binary) : $$ u_{\mathrm{c\hat{q}}}\in\{0,1\} $$
 
@@ -123,7 +127,7 @@ $$ x_{\mathrm{bt}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~x_{\mathrm{bt}
 
 **(5) Equal-Parcel Constraint**
 
-This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore first and leave all the waste)
+This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore first and leave all the waste).
 
 $$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
@@ -140,6 +144,12 @@ $$ z_{\mathrm{sptd}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{s
 **(7) Stockpile Mixing Constraint**
 
 This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from the stockpile in each period must be the same).
+
+$$For~b \in B,~p \in P_b,~t = 1,~s \in S: $$
+
+
+
+$$For~b \in B,~p \in P_b,~t \in \{ 2,...,T \},~s \in S: $$
 
 
 
