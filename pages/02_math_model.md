@@ -54,9 +54,9 @@ fixed cost variables (binary) : $$ f_{\mathrm{bptd}}\in\{0,1\} $$
 
 ## additional variables
 
-$$p_{\mathrm{btd}} = $$ objective value of block b if it is mined BY time t and sent to destination d. 
+$$p_{\mathrm{bptd}} : $$ objective value of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
 
-note that $$p_{\mathrm{btd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
+note that $$p_{\mathrm{bptd}}$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
 ## objective function
 
