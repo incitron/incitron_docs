@@ -39,13 +39,13 @@ $$ \hat{d}_f \in \hat{D}_f : $$ destinations that can trigger fixed cost f; $$~1
 
 ## decision variables (by-format)
 
-$$x_{\mathrm{bt}} : $$ 1 if block `b` has been mined by period `t`, otherwise 0.
+$$x_{\mathrm{bt}} : $$ 1 if block `b` has been mined by the end of period `t`, otherwise 0.
 
-$$y_{\mathrm{bptd}} : $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
+$$y_{\mathrm{bptd}} : $$ fraction of parcel `p` contained in block `b` mined by the end of period `t` and sent to destination `d`. 
 
-$$z_{\mathrm{bpts}} : $$ fraction of parcel `p` contained in block `b` mined by period `t` and sent to stockpile `s`. 
+$$z_{\mathrm{bpts}} : $$ fraction of parcel `p` contained in block `b` mined by the end of period `t` and sent to stockpile `s`. 
 
-$$z_{\mathrm{sptd}} : $$ fraction of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
+$$z_{\mathrm{sptd}} : $$ fraction of parcel `p` contained in stockpile `s` reclaimed by the end of period `t` and sent to destination `d`. 
 
 $$f_{\mathrm{st}} : $$ relative proportion of parcels from the stockpile `s` reclaimed in time period `t` (i.e., "out-fraction").
 
@@ -115,11 +115,15 @@ $$ z_{\mathrm{bptS}} \leq z_{\mathrm{bp+1tS}}~which~is~equivalent~to:~z_{\mathrm
 
 **(3) Precedence Constraint**
 
+This constraint ensures that all the preceeding blocks have been mined before the parcels in the current block can be started.
+
 $$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~s = S: $$
 
 $$ z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
 **(4) Linking Constraint**
+
+This constraint links the block with the parcels contained within the block (i.e., once all the parcels are completely mined within a block, said block is allowed to take a value of 1).
 
 $$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
@@ -127,7 +131,7 @@ $$ x_{\mathrm{bt}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~x_{\mathrm{bt}
 
 **(5) Equal-Parcel Constraint**
 
-This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore first and leave all the waste).
+This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore parcels first and leave all the waste).
 
 $$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
@@ -137,36 +141,38 @@ $$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm
 
 This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile.
 
-$$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
+$$For~b \in B,~p \in P_b,~t \in T,~s \in S,~d = D: $$
 
-$$ z_{\mathrm{sptd}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptd}} - z_{\mathrm{bpts}} \leq 0 $$
+$$ z_{\mathrm{sptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptD}} - z_{\mathrm{bpts}} \leq 0 $$
 
 **(7) Stockpile Mixing Constraint**
 
 This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from the stockpile in each period must be the same).
+Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally.
 
-$$For~b \in B,~p \in P_b,~t = 1,~s \in S: $$
+$$For~b \in B,~p \in P_b,~t = 1,~s \in S,~d = D: $$
 
+$$ z_{\mathrm{sp1D}} = f_{\mathrm{s1}} $$
 
+$$For~b \in B,~p \in P_b,~t \in \{ 2,...,T \},~s \in S,~d = D: $$
 
-$$For~b \in B,~p \in P_b,~t \in \{ 2,...,T \},~s \in S: $$
-
-
+$$ \frac{z_{\mathrm{sptD}}}{z_{\mathrm{bpt-1s}}} = f_{\mathrm{st}} $$
 
 **(8) General Side Constraints**
 
-* Attribute Sum
-* Attribute Average
-* Mine Block After Period
-* Mine Block Before Period
+* attribute sum
+* attribute average
+* mine block after period
+* don't mine block after period
+* mine block before period
+* don't mine block before period
 
 # additional notes
 
 This section contains some additional notes regarding the mathematical model behind incitron.
 Specific topics include:
-* [definition of blocks, parcels and destinations](#blocks,-parcels,-destinations)
-* [why we define blocks and parcels seperately](#blocks,-parcels,-destinations)
-* [at-format & by-format](#at-format-&-by-format)
+* [definition of blocks, parcels and destinations](#blocks-parcels-destinations)
+* [at-format & by-format](#at-format-by-format)
 * [stockpiling](#stockpiling)
 
 ## blocks, parcels, destinations
