@@ -33,7 +33,7 @@ $$ \hat{q}_c \in \hat{Q}_c : $$ side constraints expanded by purchasing capital 
 
 $$ f \in F : $$ fixed costs; $$~1,...,F $$
 
-$$ \hat{p}_f \in \hat{P}_bf : $$ parcels that can trigger fixed cost f; $$~1,...,\hat{P}_bf ; \hat{P}_bf \subseteq P_b $$
+$$ \hat{p}_f \in \hat{P}_{bf} : $$ parcels that can trigger fixed cost f; $$~1,...,\hat{P}_{bf} ; \hat{P}_{bf} \subseteq P_b $$
 
 $$ \hat{d}_f \in \hat{D}_f : $$ destinations that can trigger fixed cost f; $$~1,...,\hat{D}_f ; \hat{D}_f \subseteq D $$
 
