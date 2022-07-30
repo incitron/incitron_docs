@@ -139,16 +139,15 @@ $$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm
 
 **(6) Stockpile Flow-Balancing Constraint**
 
-This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile.
+This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile in previous periods.
 
 $$For~b \in B,~p \in P_b,~t \in T,~s \in S,~d = D: $$
 
 $$ z_{\mathrm{sptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptD}} - z_{\mathrm{bpts}} \leq 0 $$
 
-**(7) Stockpile Mixing Constraint**
+**(7) Stockpile Mixing Constraint (equal out-fractions)**
 
-This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from the stockpile in each period must be the same).
-Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally.
+This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from each stockpile in each period must be the same). Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally.
 
 $$For~b \in B,~p \in P_b,~t = 1,~s \in S,~d = D: $$
 
@@ -156,7 +155,7 @@ $$ z_{\mathrm{sp1D}} = f_{\mathrm{s1}} $$
 
 $$For~b \in B,~p \in P_b,~t \in \{ 2,...,T \},~s \in S,~d = D: $$
 
-$$ \frac{z_{\mathrm{sptD}}}{z_{\mathrm{bpt-1s}}} = f_{\mathrm{st}} $$
+$$ \frac{z_{\mathrm{sptD}} - z_{\mathrm{spt-1D}}}{z_{\mathrm{bpt-1s}} - z_{\mathrm{spt-1D}}} = f_{\mathrm{st}} $$
 
 **(8) General Side Constraints**
 
