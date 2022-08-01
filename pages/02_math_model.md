@@ -27,6 +27,7 @@ This page describes the mathematical representation of the `MILP` model that is 
   * [General Side Constraints](#8-general-side-constraints)
 * [additional notes](#additional-notes):
   * [definition of blocks, parcels and destinations](#definition-of-blocks-parcels-destinations)
+  * [Why does the linear program have integer terms?](#integer-terms-in-the-linear-program)
   * [AT-format and BY-format](#at-format-and-by-format)
   * [stockpiling](#stockpiling)
 
@@ -210,6 +211,7 @@ For simplicity we usually choose a value of $$ \phi $$ that is the mean of the m
 This section contains some additional notes regarding the mathematical model behind `incitron`.
 Specific topics include:
 * [definition of blocks, parcels and destinations](#definition-of-blocks-parcels-destinations)
+* [Why does the linear program have integer terms?](#integer-terms-in-the-linear-program)
 * [AT-format and BY-format](#at-format-and-by-format)
 * [stockpiling](#stockpiling)
 
@@ -235,11 +237,23 @@ Once a block has been mined, there is a secondary decision that must be made as 
 
 It is often the case in mining that the downstream destination decisions are required to be more granular for the material contained inside a block than the decision to mine the block itself. An example is if a bench at an open pit mine is being treated as the mining-level decision, not all material on that bench should go to the same destination. A bench would typically contain some amount of ore that would go to the plant, and some amount of waste that would go to the dump. For this reason, blocks are split up into multiple "parcels", with the mining decision being made on the block level, and the destination decision being made independently for each parcel. The parcels contained within a block are however mined in equal proportions - it would be rare to be able to access all the ore on a bench without having to mine any of the waste.
 
+## integer terms in the linear program
+
+
+
 ## AT-format and BY-format
 
 decisions are cumulative
 
 ## stockpiling
 
-In theory, 
+In theory, stockpiling should just be able to be treated as another destination for a parcel once it has been extracted. A parcel should be able to be stored for a certain number of periods, and then at some later date be reclaimed and processed. This method of allowing each parcel to be stockpiled individually without any mixing between parcels is a linear problem, and can be easily incorporated into a linear programming model. 
+
+The problem arises however, when we make the assumption that stockpiles are completely mixed and all material placed on a stockpile becomes homogeneous. This is a fairly standard assumption in mine planning contexts (especially strategic planning), and is considered to be a conservative assumption. In a production envvironment at an operating mine, it is typically expected that once a parcel of ore is placed on a stockpile, it won't be able to be selectively reclaimed later. When asked about stockpiles, mine planners will typically say "there is a stockpile that contains 1Mt of ore at 1.8 g/t Au" (i.e., they're reporting the mixed average grade). They <u>won't</u> typically say "there is a stockpile that contains 5,134 parcels of ore, and the first parcel is 2.3 g/t, the second parcel is 1.7 g/t, the third parcel is 2.0 g/t, etc...".  
+
+Assuming all parcels placed on a stockpile are mixed introduces a non-linear term into the mathematical model. This obviously cannot be solved simply using standard linear programming techniques. There are numerous methods that are used to either simplify and overcome the non-linear stockpile mixing assumption:
+1. **Don't consider reclaiming as part of the optimisation**: This is probably the most simple method and basically doesn't optimise stockpile movements as part of the schedule. This method also only works with a window stepping time horizon scheduling method. If a problem is tried to be solved globally, ore can be stockpiled, but can never be reclaimed. Each stockpile is treated as a destination during each period of the schedule. When the schedule is solved for that period and moves to the next period, previously stockpiled material becomes a new source. However, with this method the optimiser cannot see that material that is stockpiled in this period is able to be reclaimed in later periods. This is the method utilised by [Minemax Scheduler](https://www.minemax.com/products/scheduler/).
+2. **Assume each stockpile has a fixed average grade**: 
+3. **Piece-wise linear approximation of the quadratic mixing constraints**: 
+4. **Specialised branching method**:
 
