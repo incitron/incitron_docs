@@ -255,5 +255,5 @@ Assuming all parcels placed on a stockpile are mixed introduces a non-linear ter
 1. **Don't consider reclaiming as part of the optimisation**: This is probably the most simple method and basically doesn't optimise stockpile movements as part of the schedule. This method also only works with a window stepping time horizon scheduling method. If a problem is tried to be solved globally, ore can be stockpiled, but can never be reclaimed. Each stockpile is treated as a destination during each period of the schedule. When the schedule is solved for that period and moves to the next period, previously stockpiled material becomes a new source. However, with this method the optimiser cannot see that material that is stockpiled in this period is able to be reclaimed in later periods. This is the method utilised by [Minemax Scheduler](https://www.minemax.com/products/scheduler/).
 2. **Assume each stockpile has a fixed average grade**: 
 3. **Piece-wise linear approximation of the quadratic mixing constraints**: 
-4. **Specialised branching method**:
+4. **Specialised branching method**: This method uses a specialised version of the branch-and-bound method
 
