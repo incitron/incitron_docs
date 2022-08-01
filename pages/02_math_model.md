@@ -147,7 +147,7 @@ $$ z_{\mathrm{sptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{s
 
 **(7) Stockpile Mixing Constraint (equal out-fractions)**
 
-This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from each stockpile in each period must be the same). Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally. Note that stockpile mixing is a non-linear constraint, but can be solved, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target="_blank"}.
+This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from each stockpile in each period must be the same). Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally. Note that stockpile mixing is a non-linear constraint, but can be solved with a MILP branch-and-bound algorithm framework, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target="_blank"}.
 
 $$For~b \in B,~p \in P_b,~t = 1,~s \in S,~d = D: $$
 
@@ -157,9 +157,25 @@ $$For~b \in B,~p \in P_b,~t \in \{ 2,...,T \},~s \in S,~d = D: $$
 
 $$ \frac{z_{\mathrm{sptD}} - z_{\mathrm{spt-1D}}}{z_{\mathrm{bpt-1s}} - z_{\mathrm{spt-1D}}} = f_{\mathrm{st}} $$
 
-Discretised out-fractions:
+**Solving non-linear stockpiling mixing constraints:**
 
-A priori discretisation of the out-fractions $$ f_{\mathrm{st}} $$ and to produce a piece-wise linear outer approximation of the non-linear mixing constraints.
+A special branching scheme is used to force the maximum violation of the nonlinear constraints arbitrarily close to zero, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target="_blank"}. The special branching method only adds linear constraints at each node in the branch-and-bound tree, so is practically efficient to solve using modern MILP solvers.
+
+Assuming we have a valid linear relaxation solution (fractional) that violates the stockpile mixing constraint for a certain time period. Then there exists two parcels $$ i,j \in P $$ with different out-fractions (i.e., different values for $$ f_{\mathrm{st}} $$). Thus there must be a ratio:
+
+$$ \frac{z_{\mathrm{sitD}} - z_{\mathrm{sit-1D}}}{z_{\mathrm{bit-1s}} - z_{\mathrm{sit-1D}}} \lt \phi \lt \frac{z_{\mathrm{sjtD}} - z_{\mathrm{sjt-1D}}}{z_{\mathrm{bjt-1s}} - z_{\mathrm{sjt-1D}}} $$
+
+This inequality creates two branches at that node in the B&B tree:
+
+Force the out-fractions of all parcels from a stockpile in a period to be <u>no more</u> than $$ \phi $$:
+
+$$ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} \leq  \phi z_{\mathrm{bpt-1s}}~which~is~equivalent~to:~ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} - \phi z_{\mathrm{bpt-1s}} \leq 0 $$
+
+Force the out-fractions of all parcels from a stockpile in a period to be <u>no less</u> than $$ \phi $$:
+
+$$ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} \geq  \phi z_{\mathrm{bpt-1s}}~which~is~equivalent~to:~ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} - \phi z_{\mathrm{bpt-1s}} \geq 0 $$
+
+For simplicity we usually choose a value of $$ \phi $$ that is the mean of the minimum and maximum out-fractions from a stockpile in a period.
 
 **(8) General Side Constraints**
 
@@ -175,7 +191,7 @@ A priori discretisation of the out-fractions $$ f_{\mathrm{st}} $$ and to produc
 This section contains some additional notes regarding the mathematical model behind incitron.
 Specific topics include:
 * [definition of blocks, parcels and destinations](#blocks-parcels-destinations)
-* [at-format & by-format](#at-format-by-format)
+* [AT-format and BY-format](#at-format-and-by-format)
 * [stockpiling](#stockpiling)
 
 ## blocks, parcels, destinations
@@ -198,7 +214,7 @@ Once a block has been mined, there is a secondary decision that must be made as 
 2. A block is mined using a front-end loader and sent to the processing plant (destination: block->front-end loader-> plant)
 3. A block is mine and sent to the waste dump (destination: block->waste dump)
 
-## at-format & by-format
+## AT-format and BY-format
 
 decisions are cumulative
 
