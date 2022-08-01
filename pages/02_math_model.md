@@ -11,6 +11,21 @@ has_children: false
 
 This page describes the mathematical representation of the `MILP` model that is solved by the incitron engine. This is a `Precedence Constrained Production Scheduling Problem (PCPSP)` with stockpiling. Please take note of the special use of completing mining blocks and parcels `by` a time period, rather than `at` a time period.
 
+**Table of contents**
+* [indices & sets](#indices-sets)
+* [decision variables](#decision-variables-by-format)
+* [additional variables](#additional-variables-by-format)
+* [objective function](#objective-function-by-format)
+* [constraints](#constraints-by-format):
+  * [Mine Each Block Only Once](#1-mine-each-block-only-once-finitude-constraint)
+  * [Mine Each Parcel Only Once](#2-mine-each-parcel-only-once-finitude-constraint)
+  * [Precedence Constraint](#3-precedence-constraint)
+  * [Linking Constraint](#4-linking-constraint)
+  * [Equal-Parcel Constraint](#5-equal-parcel-constraint)
+  * [Stockpile Flow-Balancing Constraint](#6-stockpile-flow-balancing-constraint)
+  * [Stockpile Mixing Constraint](#7-stockpile-mixing-constraint-equal-out-fractions)
+  * [General Side Constraints](#8-general-side-constraints)
+
 ## indices & sets
 
 $$ b \in B : $$ blocks; $$~1,...,B $$
@@ -87,13 +102,13 @@ $$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum
 
 ## constraints (by-format)
 
-**(1) Mine Each Block Only Once (finitude constraint)**
+#### 1) Mine Each Block Only Once (finitude constraint)
 
 $$For~b \in B,~t \in \{ 2,...,T \}: $$
 
 $$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
 
-**(2) Mine Each Parcel Only Once (finitude constraint)**
+#### 2) Mine Each Parcel Only Once (finitude constraint)
 
 Note here we treat sending parcels to stockpiles as a seperate set of constraints (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another "destination".
 
@@ -113,7 +128,7 @@ $$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~s = S: $$
 
 $$ z_{\mathrm{bptS}} \leq z_{\mathrm{bp+1tS}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bp+1tS}} \leq 0 $$
 
-**(3) Precedence Constraint**
+#### 3) Precedence Constraint
 
 This constraint ensures that all the preceeding blocks have been mined before the parcels in the current block can be started.
 
@@ -121,7 +136,7 @@ $$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~s = S: $$
 
 $$ z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
-**(4) Linking Constraint**
+#### 4) Linking Constraint
 
 This constraint links the block with the parcels contained within the block (i.e., once all the parcels are completely mined within a block, said block is allowed to take a value of 1).
 
@@ -129,7 +144,7 @@ $$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
 $$ x_{\mathrm{bt}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~x_{\mathrm{bt}} - z_{\mathrm{bptS}} \leq 0 $$
 
-**(5) Equal-Parcel Constraint**
+#### 5) Equal-Parcel Constraint
 
 This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore parcels first and leave all the waste).
 
@@ -137,7 +152,7 @@ $$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
 $$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm{bp-1tS}} - z_{\mathrm{bptS}} \leq 0 $$
 
-**(6) Stockpile Flow-Balancing Constraint**
+#### 6) Stockpile Flow-Balancing Constraint
 
 This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile in previous periods.
 
@@ -145,7 +160,7 @@ $$For~b \in B,~p \in P_b,~t \in T,~s \in S,~d = D: $$
 
 $$ z_{\mathrm{sptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptD}} - z_{\mathrm{bpts}} \leq 0 $$
 
-**(7) Stockpile Mixing Constraint (equal out-fractions)**
+#### 7) Stockpile Mixing Constraint (equal out-fractions)
 
 This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from each stockpile in each period must be the same). Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally. Note that stockpile mixing is a non-linear constraint, but can be solved with a MILP branch-and-bound algorithm framework, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target="_blank"}.
 
@@ -177,7 +192,7 @@ $$ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} \geq  \phi z_{\mathrm{bpt-
 
 For simplicity we usually choose a value of $$ \phi $$ that is the mean of the minimum and maximum out-fractions from a stockpile in a period.
 
-**(8) General Side Constraints**
+#### 8) General Side Constraints
 
 * attribute sum
 * attribute average
