@@ -12,7 +12,7 @@ has_children: false
 This page describes the mathematical representation of the `MILP` model that is solved by the incitron engine. This is a `Precedence Constrained Production Scheduling Problem (PCPSP)` with stockpiling. Please take note of the special use of completing mining blocks and parcels `by` a time period, rather than `at` a time period.
 
 **Table of contents**
-* [indices & sets](#indices-sets)
+* [indices & sets](#indices-and-sets)
 * [decision variables](#decision-variables-by-format)
 * [additional variables](#additional-variables-by-format)
 * [objective function](#objective-function-by-format)
@@ -26,7 +26,7 @@ This page describes the mathematical representation of the `MILP` model that is 
   * [Stockpile Mixing Constraint](#7-stockpile-mixing-constraint-equal-out-fractions)
   * [General Side Constraints](#8-general-side-constraints)
 
-## indices & sets
+## indices and sets
 
 $$ b \in B : $$ blocks; $$~1,...,B $$
 
