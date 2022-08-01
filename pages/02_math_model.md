@@ -25,6 +25,10 @@ This page describes the mathematical representation of the `MILP` model that is 
   * [Stockpile Flow-Balancing Constraint](#6-stockpile-flow-balancing-constraint)
   * [Stockpile Mixing Constraint](#7-stockpile-mixing-constraint-equal-out-fractions)
   * [General Side Constraints](#8-general-side-constraints)
+* [additional notes](#additional-notes):
+  * [definition of blocks, parcels and destinations](#definition-of-blocks-parcels-destinations)
+  * [AT-format and BY-format](#at-format-and-by-format)
+  * [stockpiling](#stockpiling)
 
 ## indices and sets
 
@@ -203,17 +207,17 @@ For simplicity we usually choose a value of $$ \phi $$ that is the mean of the m
 
 # additional notes
 
-This section contains some additional notes regarding the mathematical model behind incitron.
+This section contains some additional notes regarding the mathematical model behind `incitron`.
 Specific topics include:
-* [definition of blocks, parcels and destinations](#blocks-parcels-destinations)
+* [definition of blocks, parcels and destinations](#definition-of-blocks-parcels-destinations)
 * [AT-format and BY-format](#at-format-and-by-format)
 * [stockpiling](#stockpiling)
 
-## blocks, parcels, destinations
+## definition of blocks, parcels, destinations
 
 Mine planning is a classic example of the Precedence Constrained Production Scheduling Problem (PCPSP), where there are a set of activities (or "jobs") that must be scheduled to occur over a number of periods, with precedences between the activities. Further, each activity can have a number of different methods (or "ways", "modes") that it can be completed, and we must also choose the optimal method for completing said activity.
 
-Within mine planning, the most common activity that must be scheduled is the mining of a "block" of earth. Note here that a "block" is not restricted to meaning an SMU block within a blockmodel, or even a block in an open pit mine. A "block" can represent any physical volume of rock, including:
+Within mine planning, the most common activity that must be scheduled is the mining of a "block" of earth. Note here that a block is not restricted to meaning an SMU block within a blockmodel, or even a block in an open pit mine. A block can represent any physical volume of rock at a mine, including:
 * an SMU block on a bench
 * a mining polygon on a bench in an open pit mine
 * a whole bench in an open pit mine
@@ -224,17 +228,18 @@ Within mine planning, the most common activity that must be scheduled is the min
 * a panel of a block cave mine
 * etc...
 
-Once a block has been mined, there is a secondary decision that must be made as to what should be done with the material, typically referred to as the "destination" of the block. Again, note here that a "destination" is not just restricted to a physical destination at a mine (i.e., the waste dump, the plant, etc), but should encompass any downstream decisions that are required to be made once the block has been mined. Hence, the "destination" should encompass a `set` of activities that could be performed with the mine block. There are typically many different "destinations" that a block can take. A granular example of alternative "destinations" to cement the theory is as follows:
-1. A block is mined using a face shovel and sent to the processing plant (destination: block->face shovel->plant)
-2. A block is mined using a front-end loader and sent to the processing plant (destination: block->front-end loader-> plant)
-3. A block is mine and sent to the waste dump (destination: block->waste dump)
+Once a block has been mined, there is a secondary decision that must be made as to what should be done with the material, typically referred to as the "destination" of the block. Again, note here that a "destination" is not just restricted to a physical destination at a mine (i.e., the waste dump, the plant, etc), but should encompass any downstream decisions that are required to be made once the block has been mined. Hence, the "estination should encompass a `set` of activities that could be performed with the mined block. This is why sometimes the destination is also referred to as the "mode" or "activity" of a block once it has been mined. There are typically many different destinations that a block can take. An example of alternative destinations at an open pit mine is as follows:
+1. A block is mined using a face shovel and sent to the processing plant (`destination: block->face shovel->plant`)
+2. A block is mined using a front-end loader and sent to the processing plant (`destination: block->front-end loader-> plant`)
+3. A block is mine and sent to the waste dump (`destination: block->waste dump`)
+
+It is often the case in mining that the downstream destination decisions are required to be more granular for the material contained inside a block than the decision to mine the block itself. An example is if a bench at an open pit mine is being treated as the mining-level decision, not all material on that bench should go to the same destination. A bench would typically contain some amount of ore that would go to the plant, and some amount of waste that would go to the dump. For this reason, blocks are split up into multiple "parcels", with the mining decision being made on the block level, and the destination decision being made independently for each parcel. The parcels contained within a block are however mined in equal proportions - it would be rare to be able to access all the ore on a bench without having to mine any of the waste.
 
 ## AT-format and BY-format
 
 decisions are cumulative
 
-
 ## stockpiling
 
-
+In theory, 
 
