@@ -243,11 +243,50 @@ It is often the case in mining that the downstream destination decisions are req
 
 ## AT-format and BY-format
 
-decisions are cumulative
+It’s common in the basic formulation of scheduling models to express the decision variables in terms of activities happening **at** a time period rather than **by** a time period. For example, it would be normal to state that *block x* is mined at *period y*, as opposed to *block x* is mined in some time period by the end of *period y* (including *period y*).
+
+Nonetheless, it is actually more natural to model decisions in scheduling problems as happening **by** a time period. This modelling assumption implies (importantly) that decisions made during a mining schedule are actually cumulative, whereby a decision to mine a block in an earlier period has a cumulative impact on whether said block can be mined in later periods. 
+
+While at first this “by-formulation” may seem unnecessary and cumbersome, it becomes clear when you analyse the structure of models used by some existing mine planning softwares that they also use a by-formulation. The most classic and simple example would be a pit optimisation problem (yes, this is not a scheduling problem), such as solved by Geovia Whittle, where there a set of blocks with economic values and precedences between different blocks. The precedences between blocks actually control the cumulative decision making nature of the problem. To mine a block on bench 3, you must have also mined its preceding blocks on benches 1 and 2. Therefore the preceding blocks must be *accumulated* before the block of interest can be extracted.
+
+Utilising a by-formulation to model mine scheduling problems affords multiple benefits over the simpler at-formulation. Note for completeness here that using a by-formulation and at-formulation will always give the same schedule result, but are just two different variable spaces for modelling the same problem (think of an angle measured in degrees vs. radians - both are representations of the same angle but in different variable spaces). 
+
+The first benefit is actually reducing the number of non-zero variables in the linear programming decision variable coefficient matrix (the "A" matrix). Don't let that mouthful confuse you, it is simple to show with an example that using a by-formulation can actually make modelling the finitude constraints (i.e., can only mine a block once) and precedence constraints alot easier. Lets assume we have two blocks *x1* and *x2*, with five time periods *t1*, *t2*, *t3*, *t4*, *t5*, and want to write the linear program of the precedence constraints for these blocks (see below). In terms of the decision variables we have $$x1_{t1}$$, $$x1_{t2}$$, $$x1_{t3}$$, $$x1_{t4}$$, $$x1_{t5}$$, $$x2_{t1}$$, $$x2_{t2}$$, $$x2_{t3}$$, $$x2_{t4}$$, $$x2_{t5}$$, with each binary variable tracking if block *x* is mined in that time period *t*. We also assume that *x2* is a precedent to *x1*. You can see below that using the at-formulation we must sum up and check whether *x2* has already been mined in previous periods to *x1*, whereas with the by-formulation we can just make sure for each time period that *x2* must equal to or greater than in the previous periods to *x1* (i.e., representing the cumulative nature of mining a block). Obviously for this toy example the difference is not major, but you could imagine the difference in the size of the linear program for instances with millions of blocks and tens of periods.
+
+$$AT-formulation:$$
+
+$$ precedence~constraint~for~period~1:~x1_{t1} \leq x2_{t1}  $$
+
+$$ precedence~constraint~for~period~2:~x1_{t2} \leq x2_{t1} + x2_{t2} $$
+
+$$ precedence~constraint~for~period~3:~x1_{t3} \leq x2_{t1} + x2_{t2} + x2_{t3} $$
+
+$$ precedence~constraint~for~period~4:~x1_{t4} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} $$
+
+$$ precedence~constraint~for~period~5:~x1_{t5} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} + x2_{t5} $$
+
+$$BY-formulation:$$
+
+$$~precedence~constraint~for~period~1:~x1_{t1} \leq x2_{t1} $$
+
+$$~precedence~constraint~for~period~2:~x1_{t2} \leq x2_{t2} $$
+
+$$~precedence~constraint~for~period~3:~x1_{t3} \leq x2_{t3} $$
+
+$$~precedence~constraint~for~period~4:~x1_{t4} \leq x2_{t4} $$
+
+$$~precedence~constraint~for~period~5:~x1_{t5} \leq x2_{t5} $$
+
+The second benefit of using the by-formulation is bit more difficult to explain and is beyond the scope of this documentation, but by modelling decisions to mine a block in different time periods, and send it to different destinations as a cumulative set of decisions, this allows us to represent these cumulative precedence relationships using a directed acyclic graph (DAG), similar to precedence arcs used in pseudoflow for the ultimate pit problem (interestingly, the ultimate pit problem is actually a single-period scheduling problem where there are no constraints). This DAG structure of the by-formulation allows us to apply specialised algorithms, such as the [Bienstock-Zuckerberg algorithm]({{ site.url }}/assets/papers/Bienstock_Zuckerberg_2009.pdf){:target="_blank"}, to more efficiently solve the mixed-integer linear program. If you are interested in reading more about this special structure created in the linear program by utilising the by-formulation, please refer to the following non-exhaustive list of references:
+* [A maximum flow formulation of <br>a multi-period open-pit mining problem]({{ site.url }}/assets/papers/Amankwah_etal_2014.pdf){:target="_blank"}
+* [Solving LP Relaxations of Large-<br>Scale Precedence Constrained Problems]({{ site.url }}/assets/papers/Bienstock_Zuckerberg_2009.pdf){:target="_blank"}
+* [Solving the mixed-integer linear programming <br>problem for mine production scheduling with <br>stockpiling under multi-element geological <br>uncertainty]({{ site.url }}/assets/papers/Brika_etal_2019.pdf){:target="_blank"}
+
+The final topic to discuss relating to at-formulations vs. by-formulations is how we can actually transpose linear program inputs and results between these two variable spaces, as people will still want the schedule results reported in terms of blocks and parcels being mined *at* a time period.
 
 ## stockpiling
 
-In theory, stockpiling should just be able to be treated as another destination for a parcel once it has been extracted. A parcel should be able to be stored for a certain number of periods, and then at some later date be reclaimed and processed. This method of allowing each parcel to be stockpiled individually without any mixing between parcels is a linear problem, and can be easily incorporated into a linear programming model. 
+Stockpiling requires a special mention, as it is one of the most common aspects of mine planning that is run up the flag pole as a weakness of using linear programming for mine scheduling, and why linear programming should not be used. In theory, stockpiling should just be able to be treated as another destination for a parcel once it has been extracted. A parcel should be able to be stored for a certain number of periods, and then at some later date be reclaimed and processed. This method of allowing each parcel to be stockpiled individually without any mixing between parcels is a simple linear problem, and can be easily incorporated into a linear programming model. 
 
 The problem arises however, when we make the assumption that stockpiles are completely mixed and all material placed on a stockpile becomes homogeneous. This is a fairly standard assumption in mine planning contexts (especially strategic planning), and is considered to be a conservative assumption. In a production envvironment at an operating mine, it is typically expected that once a parcel of ore is placed on a stockpile, it won't be able to be selectively reclaimed later. When asked about stockpiles, mine planners will typically say "there is a stockpile that contains 1Mt of ore at 1.8 g/t Au" (i.e., they're reporting the mixed average grade). They <u>won't</u> typically say "there is a stockpile that contains 5,134 parcels of ore, and the first parcel is 2.3 g/t, the second parcel is 1.7 g/t, the third parcel is 2.0 g/t, etc...".  
 
