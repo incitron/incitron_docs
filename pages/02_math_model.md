@@ -125,7 +125,7 @@ $$For~b \in B,~p \in P_b,~t \in T,~d = D,~s = 1: $$
 
 $$ y_{\mathrm{bptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - z_{\mathrm{bpts}} \leq 0 $$
 
-$$For~b \in B,~p \in P_b,~t \in T,~s \in \{ s,...,S-1 \}: $$
+$$For~b \in B,~p \in P_b,~t \in T,~s \in \{ 2,...,S-1 \}: $$
 
 $$ z_{\mathrm{bpts}} \leq z_{\mathrm{bpts+1}}~which~is~equivalent~to:~z_{\mathrm{bpts}} - z_{\mathrm{bpts+1}} \leq 0 $$
 
