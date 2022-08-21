@@ -129,9 +129,9 @@ $$For~b \in B,~p \in P_b,~t \in T,~s \in \{ 2,...,S-1 \}: $$
 
 $$ z_{\mathrm{bpts}} \leq z_{\mathrm{bpts+1}}~which~is~equivalent~to:~z_{\mathrm{bpts}} - z_{\mathrm{bpts+1}} \leq 0 $$
 
-$$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~s = S: $$
+$$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~d = 1,~s = S: $$
 
-$$ z_{\mathrm{bptS}} \leq z_{\mathrm{bpt+1S}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bpt+1S}} \leq 0 $$
+$$ z_{\mathrm{bptS}} \leq z_{\mathrm{bpt+1d}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bpt+1d}} \leq 0 $$
 
 ### 3) Precedence Constraint
 
