@@ -131,7 +131,7 @@ $$ z_{\mathrm{bpts}} \leq z_{\mathrm{bpts+1}}~which~is~equivalent~to:~z_{\mathrm
 
 $$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~s = S: $$
 
-$$ z_{\mathrm{bptS}} \leq z_{\mathrm{bp+1tS}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bp+1tS}} \leq 0 $$
+$$ z_{\mathrm{bptS}} \leq z_{\mathrm{bpt+1S}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bpt+1S}} \leq 0 $$
 
 ### 3) Precedence Constraint
 
