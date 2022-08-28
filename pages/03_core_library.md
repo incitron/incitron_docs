@@ -10,13 +10,54 @@ has_children: false
 ## building & compiling
 
 incitron is compiled using the [CMake meta-build system](https://cmake.org/).
-the core engine is developed and tested on Windows, Mac and Linux (Ubuntu).
-MSVC 2022 is used to compile on Windows, and GCC 10 on Linux (via CMake).
+The core engine is developed and tested on Windows 10, Mac and Linux (Ubuntu).
+The compilers used are:
+* Windows: MSVC 2022
+* Mac: LLVM 14 (Clang)
+* Linux: GCC 10
+
+The build system used across all platforms is [Ninja](https://ninja-build.org/).
+You should download a binary of Ninja and make sure it's in your system PATH for CMake to be able to find.
+
+### windows (msvc)
+
+To setup MSVC 2022, download the Visual Studio Build Tools from [Microsoft](https://visualstudio.microsoft.com/downloads/).
+Within the Build Tools, download and install the C++ development tools.
+A good guide by Microsoft can also be found at this link: [MSVC install guide](https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line).
+
+### mac (clang)
+
+Using a terminal, install the Xcode command line tools:
+```bash
+$ sudo xcode-select --install
+```
+
+Using [brew](), install the current version of LLVM and ensure its in your system's PATH:
+```bash
+$ brew install llvm
+```
+```bash
+$ echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
+```
+
+### linux (gcc)
+
+The GNU Compiler Collection (GCC) is a collection of compilers and libraries for C and C++ development.
+
+Install the build-essentials for Linux:
+```bash
+$ sudo apt install build-essential
+```
+
+Install the specific version of GCC:
+```bash
+$ sudo apt install gcc-10
+```
 
 ## testing
 
-the core incitron engine is tested using [catch2](https://github.com/catchorg/Catch2).
-all the tests can be found in the /tests directory.
+The core incitron engine is tested using [catch2](https://github.com/catchorg/Catch2). 
+All the tests can be found in the `/tests` directory.
 
 ## external libraries
 
