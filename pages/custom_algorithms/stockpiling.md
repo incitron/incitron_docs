@@ -1,7 +1,7 @@
 ---
 layout: default
 title: stockpiling
-parent: 6. custom algorithms
+parent: custom algorithms
 has_children: false
 ---
 

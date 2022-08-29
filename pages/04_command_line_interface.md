@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 4. command line interface
+title: command line interface
 nav_order: 4
 has_children: false
 ---

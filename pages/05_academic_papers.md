@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 5. academic papers
+title: academic papers
 nav_order: 5
 has_children: false
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 3. core library
+title: core library
 nav_order: 3
 has_children: false
 ---
