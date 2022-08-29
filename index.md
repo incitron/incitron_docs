@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 1. introduction
+title: introduction
 nav_order: 1
 has_children: false
 ---
