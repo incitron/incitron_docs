@@ -1,10 +1,10 @@
 ---
 layout: default
-title: cuts
-parent: custom algorithms
+title: Cuts
+parent: Custom algorithms
 has_children: false
 ---
 
-# cuts
+# Cuts
 --------
 

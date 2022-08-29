@@ -1,10 +1,10 @@
 ---
 layout: default
-title: heuristics
-parent: custom algorithms
+title: Heuristics
+parent: Custom algorithms
 has_children: false
 ---
 
-# heuristics
+# Heuristics
 --------
 

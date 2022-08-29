@@ -1,10 +1,10 @@
 ---
 layout: default
-title: pre-processing
-parent: custom algorithms
+title: Pre-processing
+parent: Custom algorithms
 has_children: false
 ---
 
-# pre-processing
+# Pre-processing
 --------
 

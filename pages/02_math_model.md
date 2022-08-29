@@ -1,22 +1,22 @@
 ---
 layout: default
-title: math model
+title: Math model
 nav_order: 2
 has_children: false
 ---
 
 {% include mathjax.html %}
 
-# mathematical model
+# Mathematical model
 
 This page describes the mathematical representation of the `MILP` model that is solved by the incitron engine. This is a `Precedence Constrained Production Scheduling Problem (PCPSP)` with stockpiling. Please take note of the special use of completing mining blocks and parcels `by` a time period, rather than `at` a time period.
 
 **Table of contents**
-* [indices and sets](#indices-and-sets)
-* [decision variables](#decision-variables-by-format)
-* [additional variables](#additional-variables-by-format)
-* [objective function](#objective-function-by-format)
-* [constraints](#constraints-by-format):
+* [Indices and sets](#indices-and-sets)
+* [Decision variables](#decision-variables-by-format)
+* [Additional variables](#additional-variables-by-format)
+* [Objective function](#objective-function-by-format)
+* [Constraints](#constraints-by-format):
   * [Mine Each Block Only Once](#1-mine-each-block-only-once-finitude-constraint)
   * [Mine Each Parcel Only Once](#2-mine-each-parcel-only-once-finitude-constraint)
   * [Precedence Constraint](#3-precedence-constraint)
@@ -25,13 +25,13 @@ This page describes the mathematical representation of the `MILP` model that is 
   * [Stockpile Flow-Balancing Constraint](#6-stockpile-flow-balancing-constraint)
   * [Stockpile Mixing Constraint](#7-stockpile-mixing-constraint-equal-out-fractions)
   * [General Side Constraints](#8-general-side-constraints)
-* [additional notes](#additional-notes):
-  * [definition of blocks, parcels and destinations](#definition-of-blocks-parcels-destinations)
+* [Additional notes](#additional-notes):
+  * [Definition of blocks, parcels and destinations](#definition-of-blocks-parcels-destinations)
   * [Why does the linear program have integer terms?](#integer-terms-in-the-linear-program)
   * [AT-format and BY-format](#at-format-and-by-format)
-  * [stockpiling](#stockpiling)
+  * [Stockpiling](#stockpiling)
 
-## indices and sets
+## Indices and sets
 
 $$ b \in B : $$ blocks; $$~1,...,B $$
 
@@ -57,7 +57,7 @@ $$ \hat{p}_f \in \hat{P}_{bf} : $$ parcels that can trigger fixed cost f; $$~1,.
 
 $$ \hat{d}_f \in \hat{D}_f : $$ destinations that can trigger fixed cost f; $$~1,...,\hat{D}_f ; \hat{D}_f \subseteq D $$
 
-## decision variables (by-format)
+## Decision variables (by-format)
 
 $$x_{\mathrm{bt}} : $$ 1 if block `b` has been mined by the end of period `t`, otherwise 0.
 
@@ -87,7 +87,7 @@ capital decision variables (binary) : $$ u_{\mathrm{c\hat{q}}}\in\{0,1\} $$
 
 fixed cost variables (binary) : $$ v_{\mathrm{f\hat{p}_f\hat{d}_f}}\in\{0,1\} $$
 
-## additional variables (by-format)
+## Additional variables (by-format)
 
 $$p_{\mathrm{bptd}}^y : $$ objective value of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
 
@@ -101,19 +101,19 @@ $$p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v : $$ objective value of fixed cost `f`.
 
 note that $$p$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
-## objective function (by-format)
+## Objective function (by-format)
 
 $$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{bptd}}^y y_{\mathrm{bptd}} + \\~~~~~~~~ \displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{s\in S} p_{\mathrm{bpts}}^z z_{\mathrm{bpts}} + \\~~~~~~~~ \displaystyle\sum_{s\in S} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{sptd}}^z z_{\mathrm{sptd}} + \\~~~~~~~~ \displaystyle\sum_{c\in C} p_{\mathrm{c\hat{q}}}^u + \\~~~~~~~~ \displaystyle\sum_{f\in F} p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v $$
 
-## constraints (by-format)
+## Constraints (by-format)
 
-### 1) Mine Each Block Only Once (finitude constraint)
+### 1) Mine each block only once (finitude constraint)
 
 $$For~b \in B,~t \in \{ 2,...,T \}: $$
 
 $$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$
 
-### 2) Mine Each Parcel Only Once (finitude constraint)
+### 2) Mine each parcel only once (finitude constraint)
 
 Note here we treat sending parcels to stockpiles as a seperate set of constraints (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another "destination".
 
@@ -133,7 +133,7 @@ $$For~b \in B,~p \in P_b,~t \in \{ 1,...,T-1 \},~d = 1,~s = S: $$
 
 $$ z_{\mathrm{bptS}} \leq z_{\mathrm{bpt+1d}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bpt+1d}} \leq 0 $$
 
-### 3) Precedence Constraint
+### 3) Precedence constraint
 
 This constraint ensures that all the preceeding blocks have been mined before the parcels in the current block can be started.
 
@@ -141,7 +141,7 @@ $$For~b \in B,~p \in P_b,~\hat{b} \in \hat{B}_b,~t \in T,~s = S: $$
 
 $$ z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$
 
-### 4) Linking Constraint
+### 4) Linking constraint
 
 This constraint links the block with the parcels contained within the block (i.e., once all the parcels are completely mined within a block, said block is allowed to take a value of 1).
 
@@ -149,7 +149,7 @@ $$For~b \in B,~p \in P_b,~t \in T,~s = S: $$
 
 $$ x_{\mathrm{bt}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~x_{\mathrm{bt}} - z_{\mathrm{bptS}} \leq 0 $$
 
-### 5) Equal-Parcel Constraint
+### 5) Equal-parcel constraint
 
 This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore parcels first and leave all the waste).
 
@@ -157,7 +157,7 @@ $$For~b \in B,~p \in \{ 2,...,P_b \},~t \in T,~s = S: $$
 
 $$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm{bp-1tS}} - z_{\mathrm{bptS}} \leq 0 $$
 
-### 6) Stockpile Flow-Balancing Constraint
+### 6) Stockpile flow-balancing constraint
 
 This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile in previous periods.
 
@@ -165,7 +165,7 @@ $$For~b \in B,~p \in P_b,~t \in T,~s \in S,~d = D: $$
 
 $$ z_{\mathrm{sptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptD}} - z_{\mathrm{bpts}} \leq 0 $$
 
-### 7) Stockpile Mixing Constraint (equal out-fractions)
+### 7) Stockpile mixing constraint (equal out-fractions)
 
 This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from each stockpile in each period must be the same). Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally. Note that stockpile mixing is a non-linear constraint, but can be solved with a MILP branch-and-bound algorithm framework, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target="_blank"}.
 
@@ -197,7 +197,7 @@ $$ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} \geq  \phi z_{\mathrm{bpt-
 
 For simplicity we usually choose a value of $$ \phi $$ that is the mean of the minimum and maximum out-fractions from a stockpile in a period.
 
-### 8) General Side Constraints
+### 8) General side constraints
 
 * attribute sum
 * attribute average
@@ -206,7 +206,7 @@ For simplicity we usually choose a value of $$ \phi $$ that is the mean of the m
 * mine block before period
 * don't mine block before period
 
-# additional notes
+# Additional notes
 
 This section contains some additional notes regarding the mathematical model behind `incitron`.
 Specific topics include:
@@ -215,7 +215,7 @@ Specific topics include:
 * [AT-format and BY-format](#at-format-and-by-format)
 * [stockpiling](#stockpiling)
 
-## definition of blocks, parcels, destinations
+## Definition of blocks, parcels, destinations
 
 Mine planning is a classic example of the Precedence Constrained Production Scheduling Problem (PCPSP), where there are a set of activities (or "jobs") that must be scheduled to occur over a number of periods, with precedences between the activities. Further, each activity can have a number of different methods (or "ways", "modes") that it can be completed, and we must also choose the optimal method for completing said activity.
 
@@ -237,7 +237,7 @@ Once a block has been mined, there is a secondary decision that must be made as 
 
 It is often the case in mining that the downstream destination decisions are required to be more granular for the material contained inside a block than the decision to mine the block itself. An example is if a bench at an open pit mine is being treated as the mining-level decision, not all material on that bench should go to the same destination. A bench would typically contain some amount of ore that would go to the plant, and some amount of waste that would go to the dump. For this reason, blocks are split up into multiple "parcels", with the mining decision being made on the block level, and the destination decision being made independently for each parcel. The parcels contained within a block are however mined in equal proportions - it would be rare to be able to access all the ore on a bench without having to mine any of the waste.
 
-## integer terms in the linear program
+## Integer terms in the linear program
 
 
 
@@ -284,7 +284,7 @@ The second benefit of using the by-formulation is bit more difficult to explain 
 
 The final topic to discuss relating to at-formulations vs. by-formulations is how we can actually transpose linear program inputs and results between these two variable spaces, as people will still want the schedule results reported in terms of blocks and parcels being mined *at* a time period.
 
-## stockpiling
+## Stockpiling
 
 Stockpiling requires a special mention, as it is one of the most common aspects of mine planning that is run up the flag pole as a weakness of using linear programming for mine scheduling, and why linear programming should not be used. In theory, stockpiling should just be able to be treated as another destination for a parcel once it has been extracted. A parcel should be able to be stored for a certain number of periods, and then at some later date be reclaimed and processed. This method of allowing each parcel to be stockpiled individually without any mixing between parcels is a simple linear problem, and can be easily incorporated into a linear programming model. 
 

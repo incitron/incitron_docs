@@ -1,11 +1,11 @@
 ---
 layout: default
-title: academic papers
+title: Academic papers
 nav_order: 5
 has_children: false
 ---
 
-# academic papers
+# Academic papers
 
 This is a list of key academic papers that guided the development of the incitron engine.
 

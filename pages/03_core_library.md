@@ -1,13 +1,13 @@
 ---
 layout: default
-title: core library
+title: Core library
 nav_order: 3
 has_children: false
 ---
 
-# core incitron library
+# Core incitron library
 
-## building & compiling
+## Building & compiling
 
 incitron is compiled using the [CMake meta-build system](https://cmake.org/).
 The core engine is developed and tested on Windows 10, Mac and Linux (Ubuntu).
@@ -19,13 +19,13 @@ The compilers used are:
 The build system used across all platforms is [Ninja](https://ninja-build.org/).
 You should download a binary of Ninja and make sure it's in your system PATH for CMake to be able to find.
 
-### windows (msvc)
+### Windows (msvc)
 
 To setup MSVC 2022, download the Visual Studio Build Tools from [Microsoft](https://visualstudio.microsoft.com/downloads/).
 Within the Build Tools, download and install the C++ development tools.
 A good guide by Microsoft can also be found at this link: [MSVC install guide](https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line).
 
-### mac (clang)
+### MacOS (clang)
 
 Using a terminal, install the Xcode command line tools:
 ```bash
@@ -40,7 +40,7 @@ $ brew install llvm
 $ echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
 ```
 
-### linux (gcc)
+### Linux (gcc)
 
 The GNU Compiler Collection (GCC) is a collection of compilers and libraries for C and C++ development.
 
@@ -54,12 +54,12 @@ Install the specific version of GCC:
 $ sudo apt install gcc-10
 ```
 
-## testing
+## Testing
 
 The core incitron engine is tested using [catch2](https://github.com/catchorg/Catch2). 
 All the tests can be found in the `/tests` directory.
 
-## external libraries
+## External libraries
 
 This section describes the dependencies for incitron, and where they can be downloaded. 
 For original archived copies of the external libraries please see the directory lib/archives.

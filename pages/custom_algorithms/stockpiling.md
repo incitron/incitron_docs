@@ -1,10 +1,10 @@
 ---
 layout: default
-title: stockpiling
-parent: custom algorithms
+title: Stockpiling
+parent: Custom algorithms
 has_children: false
 ---
 
-# stockpiling
+# Stockpiling
 --------
 
