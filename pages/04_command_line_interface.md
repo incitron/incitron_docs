@@ -26,5 +26,5 @@ An example of passing a JSON configuration file to the CLI is shown below.
 
 ## Config file specification
 
-This section describes the JSON format used by the command-line interface version of incitron for configuring an optimisation run. Note that both the input data and configuration are contained within the same JSON file.
+This section describes the JSON schema used by the command-line interface version of incitron for configuring an optimisation run. Note that both the input data and configuration are contained within the same JSON file.
 
