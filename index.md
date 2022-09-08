@@ -33,11 +33,19 @@ Key features of the incitron engine include:
 The fast solve times and accuracy of the incitron engine are driven by a suite of custom mining algorithms, such as:
 * Bienstock-Zuckerberg (BZ) algorithm
 * TopoSort heuristic algorithm
-* Early/Late start cuts
+* Stockpile blending spatial branching algorithm
+* Early/Late start cuts & preprocessing
 * 1-Destination heuristic
 * Re-optimise destination heuristic
+
+## Why strategic mine planning?
+
+A common question is: why do we need to bother with a strategic plan for our mine? This question is understandable, especially from the perspective of someone working at an operating mine where the main aim of the game is to ensure production targets are met, irrespective of all other outcomes.
 
 ## Code
 
 The full code repo is hosted on [Github](https://github.com/incitron/incitron).
 Note for developers: you have to be granted developer access to be able to view the incitron code repo.
+
+## Future Areas of Work
+
