@@ -40,13 +40,9 @@ The fast solve times and accuracy of the incitron engine are driven by a suite o
 
 ## Why strategic mine planning?
 
-A common question is: why do we need to bother with a strategic plan for our mine? This question is understandable, especially from the perspective of someone working at an operating mine where the main aim of the game is to ensure production targets are met, irrespective of all other outcomes.
+A common question is: why do we need to bother with a strategic plan for our mine? This question is understandable, especially from the perspective of someone working at an operating mine where the main aim of the game is to ensure production targets are met, irrespective of all other outcomes. A common 
 
 ## Code
 
 The full code repo is hosted on [Github](https://github.com/incitron/incitron).
 Note for developers: you have to be granted developer access to be able to view the incitron code repo.
-
-## Future Areas of Work
-
-
