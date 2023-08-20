@@ -1,0 +1,419 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Math Model - incitron engine</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="math_model.html" class="active"><strong aria-hidden="true">1.</strong> Math Model</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">incitron engine</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mathematical-model"><a class="header" href="#mathematical-model">Mathematical model</a></h1>
+<p>This page describes the mathematical representation of the <code>MILP</code> model that is solved by the incitron engine. This is a <code>Precedence Constrained Production Scheduling Problem (PCPSP)</code> with stockpiling. Please take note of the special use of completing mining blocks and parcels <code>by</code> a time period, rather than <code>at</code> a time period.</p>
+<p><strong>Table of contents</strong></p>
+<ul>
+<li><a href="#indices-and-sets">Indices and sets</a></li>
+<li><a href="#decision-variables-by-format">Decision variables</a></li>
+<li><a href="#additional-variables-by-format">Additional variables</a></li>
+<li><a href="#objective-function-by-format">Objective function</a></li>
+<li><a href="#constraints-by-format">Constraints</a>:
+<ul>
+<li><a href="#1-mine-each-block-only-once-finitude-constraint">Mine Each Block Only Once</a></li>
+<li><a href="#2-mine-each-parcel-only-once-finitude-constraint">Mine Each Parcel Only Once</a></li>
+<li><a href="#3-precedence-constraint">Precedence Constraint</a></li>
+<li><a href="#4-linking-constraint">Linking Constraint</a></li>
+<li><a href="#5-equal-parcel-constraint">Equal-Parcel Constraint</a></li>
+<li><a href="#6-stockpile-flow-balancing-constraint">Stockpile Flow-Balancing Constraint</a></li>
+<li><a href="#7-stockpile-mixing-constraint-equal-out-fractions">Stockpile Mixing Constraint</a></li>
+<li><a href="#8-general-side-constraints">General Side Constraints</a></li>
+</ul>
+</li>
+<li><a href="#additional-notes">Additional notes</a>:
+<ul>
+<li><a href="#definition-of-blocks-parcels-destinations">Definition of blocks, parcels and destinations</a></li>
+<li><a href="#integer-terms-in-the-linear-program">Why does the linear program have integer terms?</a></li>
+<li><a href="#at-format-and-by-format">AT-format and BY-format</a></li>
+<li><a href="#stockpiling">Stockpiling</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="indices-and-sets"><a class="header" href="#indices-and-sets">Indices and sets</a></h2>
+<p>\( b \in B : blocks; ~1,...,B \)</p>
+<p>\( \hat{b} \in \hat{B}_b : blocks\ that\ must\ be\ mined\ directly\ before\ block\ b; ~1,...,\hat{B}_b \)</p>
+<p>\( p \in P_b : parcels\ contained\ within\ block\ b; ~1,...,P_b \)</p>
+<p>\( t \in T : time\ periods; ~1,...,T \)</p>
+<p>\( d \in D : destinations; ~1,...,D \)</p>
+<p>\( s \in S : stockpiles; ~1,...,S \)</p>
+<p>\( q \in Q : side\ constraints; ~1,...,Q \)</p>
+<p>\( c \in C : capital\ expenditure\ options; ~1,...,C \)</p>
+<p>\( \hat{q}_c \in \hat{Q}_c : side\ constraints\ expanded\ by\ purchasing\ capital\ option\ c; ~1,...,\hat{Q}_c ; \hat{Q}_c \subseteq Q \)</p>
+<p>\( f \in F : fixed\ costs; ~1,...,F \)</p>
+<p>\( \hat{p}<em>f \in \hat{P}</em>{bf} : parcels\ that\ can\ trigger\ fixed\ cost\ f; ~1,...,\hat{P}<em>{bf} ; \hat{P}</em>{bf} \subseteq P_b \)</p>
+<p>\( \hat{d}_f \in \hat{D}_f : destinations\ that\ can\ trigger\ fixed\ cost\ f; ~1,...,\hat{D}_f ; \hat{D}_f \subseteq D \)</p>
+<h2 id="decision-variables-by-format"><a class="header" href="#decision-variables-by-format">Decision variables (by-format)</a></h2>
+<p>$$x_{\mathrm{bt}} : $$ 1 if block <code>b</code> has been mined by the end of period <code>t</code>, otherwise 0.</p>
+<p>$$y_{\mathrm{bptd}} : $$ fraction of parcel <code>p</code> contained in block <code>b</code> mined by the end of period <code>t</code> and sent to destination <code>d</code>. </p>
+<p>$$z_{\mathrm{bpts}} : $$ fraction of parcel <code>p</code> contained in block <code>b</code> mined by the end of period <code>t</code> and sent to stockpile <code>s</code>. </p>
+<p>$$z_{\mathrm{sptd}} : $$ fraction of parcel <code>p</code> contained in stockpile <code>s</code> reclaimed by the end of period <code>t</code> and sent to destination <code>d</code>. </p>
+<p>$$f_{\mathrm{st}} : $$ relative proportion of parcels from the stockpile <code>s</code> reclaimed in time period <code>t</code> (i.e., &quot;out-fraction&quot;).</p>
+<p>$$u_{\mathrm{c\hat{q}}} : $$ 1 if capital decision <code>c</code> has been purchased to expand the capacity of a set of constraints $$\hat{q}$$, otherwise 0.</p>
+<p>$$v_{\mathrm{f\hat{p}_f\hat{d}_f}} : $$ 1 if fixed cost has been paid to allow subset of parcels $$\hat{p}_f$$ contained in blocks <code>b</code> mined by period <code>t</code> to be sent to subset of destinations $$\hat{d}_f$$, otherwise 0.</p>
+<p>precedence variables (binary) : $$ x_{\mathrm{bt}}\in{0,1} $$</p>
+<p>decision variables (continuous) : $$ y_{\mathrm{bptd}}\in[ ,0,1] $$</p>
+<p>stockpiling variables (continuous) : $$ z_{\mathrm{bpts}}\in[ ,0,1] $$</p>
+<p>reclaiming variables (continuous) : $$ z_{\mathrm{sptd}}\in[ ,0,1] $$</p>
+<p>reclaiming proportions (continous) : $$f_{\mathrm{st}}\in[ ,0,1] $$</p>
+<p>capital decision variables (binary) : $$ u_{\mathrm{c\hat{q}}}\in{0,1} $$</p>
+<p>fixed cost variables (binary) : $$ v_{\mathrm{f\hat{p}_f\hat{d}_f}}\in{0,1} $$</p>
+<h2 id="additional-variables-by-format"><a class="header" href="#additional-variables-by-format">Additional variables (by-format)</a></h2>
+<p>$$p_{\mathrm{bptd}}^y : $$ objective value of parcel <code>p</code> contained in block <code>b</code> mined by period <code>t</code> and sent to destination <code>d</code>. </p>
+<p>$$p_{\mathrm{bpts}}^z : $$ objective value of parcel <code>p</code> contained in block <code>b</code> mined by period <code>t</code> and sent to stockpile <code>s</code>. </p>
+<p>$$p_{\mathrm{sptd}}^z : $$ objective value of parcel <code>p</code> contained in stockpile <code>s</code> reclaimed by period <code>t</code> and sent to destination <code>d</code>. </p>
+<p>$$p_{\mathrm{c\hat{q}}}^u : $$ objective value of capital decision <code>c</code>. </p>
+<p>$$p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v : $$ objective value of fixed cost <code>f</code>. </p>
+<p>note that $$p$$ is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)</p>
+<h2 id="objective-function-by-format"><a class="header" href="#objective-function-by-format">Objective function (by-format)</a></h2>
+<p>$$ max~\displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{bptd}}^y y_{\mathrm{bptd}} + \~~~~~~~~ \displaystyle\sum_{b\in B} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{s\in S} p_{\mathrm{bpts}}^z z_{\mathrm{bpts}} + \~~~~~~~~ \displaystyle\sum_{s\in S} \displaystyle\sum_{p\in P_b} \displaystyle\sum_{t\in T} \displaystyle\sum_{d\in D} p_{\mathrm{sptd}}^z z_{\mathrm{sptd}} + \~~~~~~~~ \displaystyle\sum_{c\in C} p_{\mathrm{c\hat{q}}}^u + \~~~~~~~~ \displaystyle\sum_{f\in F} p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v $$</p>
+<h2 id="constraints-by-format"><a class="header" href="#constraints-by-format">Constraints (by-format)</a></h2>
+<h3 id="1-mine-each-block-only-once-finitude-constraint"><a class="header" href="#1-mine-each-block-only-once-finitude-constraint">1) Mine each block only once (finitude constraint)</a></h3>
+<p>$$For~b \in B,~t \in { 2,...,T }: $$</p>
+<p>$$ x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}~which~is~equivalent~to:~x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 $$</p>
+<h3 id="2-mine-each-parcel-only-once-finitude-constraint"><a class="header" href="#2-mine-each-parcel-only-once-finitude-constraint">2) Mine each parcel only once (finitude constraint)</a></h3>
+<p>Note here we treat sending parcels to stockpiles as a seperate set of constraints (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another &quot;destination&quot;.</p>
+<p>$$For~b \in B,~p \in P_b,~t \in T,~d \in { 1,...,D-1 }: $$</p>
+<p>$$ y_{\mathrm{bptd}} \leq y_{\mathrm{bptd+1}}~which~is~equivalent~to:~y_{\mathrm{bptd}} - y_{\mathrm{bptd+1}} \leq 0 $$</p>
+<p>$$For~b \in B,~p \in P_b,~t \in T,~d = D,~s = 1: $$</p>
+<p>$$ y_{\mathrm{bptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~y_{\mathrm{bptD}} - z_{\mathrm{bpts}} \leq 0 $$</p>
+<p>$$For~b \in B,~p \in P_b,~t \in T,~s \in { 2,...,S-1 }: $$</p>
+<p>$$ z_{\mathrm{bpts}} \leq z_{\mathrm{bpts+1}}~which~is~equivalent~to:~z_{\mathrm{bpts}} - z_{\mathrm{bpts+1}} \leq 0 $$</p>
+<p>$$For~b \in B,~p \in P_b,~t \in { 1,...,T-1 },~d = 1,~s = S: $$</p>
+<p>$$ z_{\mathrm{bptS}} \leq z_{\mathrm{bpt+1d}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - z_{\mathrm{bpt+1d}} \leq 0 $$</p>
+<h3 id="3-precedence-constraint"><a class="header" href="#3-precedence-constraint">3) Precedence constraint</a></h3>
+<p>This constraint ensures that all the preceeding blocks have been mined before the parcels in the current block can be started.</p>
+<p>$$For~b \in B,<del>p \in P_b,</del>\hat{b} \in \hat{B}_b,~t \in T,~s = S: $$</p>
+<p>$$ z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}~which~is~equivalent~to:~z_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 $$</p>
+<h3 id="4-linking-constraint"><a class="header" href="#4-linking-constraint">4) Linking constraint</a></h3>
+<p>This constraint links the block with the parcels contained within the block (i.e., once all the parcels are completely mined within a block, said block is allowed to take a value of 1).</p>
+<p>$$For~b \in B,~p \in P_b,~t \in T,~s = S: $$</p>
+<p>$$ x_{\mathrm{bt}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~x_{\mathrm{bt}} - z_{\mathrm{bptS}} \leq 0 $$</p>
+<h3 id="5-equal-parcel-constraint"><a class="header" href="#5-equal-parcel-constraint">5) Equal-parcel constraint</a></h3>
+<p>This constraint ensures that parcels in a block are mined in equal proportions (i.e., don't just mine all the ore parcels first and leave all the waste).</p>
+<p>$$For~b \in B,~p \in { 2,...,P_b },~t \in T,~s = S: $$</p>
+<p>$$ z_{\mathrm{bp-1tS}} \leq z_{\mathrm{bptS}}~which~is~equivalent~to:~z_{\mathrm{bp-1tS}} - z_{\mathrm{bptS}} \leq 0 $$</p>
+<h3 id="6-stockpile-flow-balancing-constraint"><a class="header" href="#6-stockpile-flow-balancing-constraint">6) Stockpile flow-balancing constraint</a></h3>
+<p>This constraints ensures that the amount of a parcel that leaves a stockpile must be the same or less than the amount of said parcel that has entered the stockpile in previous periods.</p>
+<p>$$For~b \in B,~p \in P_b,~t \in T,~s \in S,~d = D: $$</p>
+<p>$$ z_{\mathrm{sptD}} \leq z_{\mathrm{bpts}}~which~is~equivalent~to:~z_{\mathrm{sptD}} - z_{\mathrm{bpts}} \leq 0 $$</p>
+<h3 id="7-stockpile-mixing-constraint-equal-out-fractions"><a class="header" href="#7-stockpile-mixing-constraint-equal-out-fractions">7) Stockpile mixing constraint (equal out-fractions)</a></h3>
+<p>This constraint ensures that stockpiles are mixed (i.e., the proportion of parcels reclaimed from each stockpile in each period must be the same). Note that in the first period we have to ensure any pre-existing stockpile balances are reclaimed equally. Stockpile mixing is a non-linear constraint, but can be solved with a MILP branch-and-bound algorithm framework, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target=&quot;_blank&quot;}.</p>
+<p>$$For~b \in B,~p \in P_b,~t = 1,~s \in S,~d = D: $$</p>
+<p>$$ z_{\mathrm{sp1D}} = f_{\mathrm{s1}} $$</p>
+<p>$$For~b \in B,~p \in P_b,~t \in { 2,...,T },~s \in S,~d = D: $$</p>
+<p>$$ \frac{z_{\mathrm{sptD}} - z_{\mathrm{spt-1D}}}{z_{\mathrm{bpt-1s}} - z_{\mathrm{spt-1D}}} = f_{\mathrm{st}} $$</p>
+<p><strong>Solving non-linear stockpiling mixing constraints:</strong></p>
+<p>A special branching scheme is used to force the maximum violation of the nonlinear constraints arbitrarily close to zero, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target=&quot;_blank&quot;}. The special branching method only adds linear constraints at each node in the branch-and-bound tree, so is practically efficient to solve using modern MILP solvers.</p>
+<p>Assuming we have a valid linear relaxation solution (fractional) that violates the stockpile mixing constraint for a certain time period. Then there exists two parcels $$ i,j \in P $$ with different out-fractions (i.e., different values for $$ f_{\mathrm{st}} $$). Thus there must be a ratio:</p>
+<p>$$ \frac{z_{\mathrm{sitD}} - z_{\mathrm{sit-1D}}}{z_{\mathrm{bit-1s}} - z_{\mathrm{sit-1D}}} \lt \phi \lt \frac{z_{\mathrm{sjtD}} - z_{\mathrm{sjt-1D}}}{z_{\mathrm{bjt-1s}} - z_{\mathrm{sjt-1D}}} $$</p>
+<p>This inequality creates two branches at that node in the B&amp;B tree:</p>
+<p>Force the out-fractions of all parcels from a stockpile in a period to be <u>no more</u> than $$ \phi $$:</p>
+<p>$$ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} \leq  \phi z_{\mathrm{bpt-1s}}<del>which~is~equivalent~to:</del> z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} - \phi z_{\mathrm{bpt-1s}} \leq 0 $$</p>
+<p>Force the out-fractions of all parcels from a stockpile in a period to be <u>no less</u> than $$ \phi $$:</p>
+<p>$$ z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} \geq  \phi z_{\mathrm{bpt-1s}}<del>which~is~equivalent~to:</del> z_{\mathrm{sptD}} + (\phi - 1) z_{\mathrm{spt-1D}} - \phi z_{\mathrm{bpt-1s}} \geq 0 $$</p>
+<p>For simplicity we usually choose a value of $$ \phi $$ that is the mean of the minimum and maximum out-fractions from a stockpile in a period.</p>
+<h3 id="8-general-side-constraints"><a class="header" href="#8-general-side-constraints">8) General side constraints</a></h3>
+<ul>
+<li>attribute sum</li>
+<li>attribute average</li>
+<li>mine block after period</li>
+<li>don't mine block after period</li>
+<li>mine block before period</li>
+<li>don't mine block before period</li>
+</ul>
+<h1 id="additional-notes"><a class="header" href="#additional-notes">Additional notes</a></h1>
+<p>This section contains some additional notes regarding the mathematical model behind <code>incitron</code>.
+Specific topics include:</p>
+<ul>
+<li><a href="#definition-of-blocks-parcels-destinations">definition of blocks, parcels and destinations</a></li>
+<li><a href="#integer-terms-in-the-linear-program">Why does the linear program have integer terms?</a></li>
+<li><a href="#at-format-and-by-format">AT-format and BY-format</a></li>
+<li><a href="#stockpiling">stockpiling</a></li>
+</ul>
+<h2 id="definition-of-blocks-parcels-destinations"><a class="header" href="#definition-of-blocks-parcels-destinations">Definition of blocks, parcels, destinations</a></h2>
+<p>Mine planning is a classic example of the Precedence Constrained Production Scheduling Problem (PCPSP), where there are a set of activities (or &quot;jobs&quot;) that must be scheduled to occur over a number of periods, with precedences between the activities. Further, each activity can have a number of different methods (or &quot;ways&quot;, &quot;modes&quot;) that it can be completed, and we must also choose the optimal method for completing said activity.</p>
+<p>Within mine planning, the most common activity that must be scheduled is the mining of a &quot;block&quot; of earth. Note here that a block is not restricted to meaning an SMU block within a blockmodel, or even a block in an open pit mine. A block can represent any physical volume of rock at a mine, including:</p>
+<ul>
+<li>an SMU block on a bench</li>
+<li>a mining polygon on a bench in an open pit mine</li>
+<li>a whole bench in an open pit mine</li>
+<li>a whole phase at an open pit mine</li>
+<li>a stope at an underground mine</li>
+<li>a section of development at an underground mine</li>
+<li>a whole underground panel of mining</li>
+<li>a panel of a block cave mine</li>
+<li>etc...</li>
+</ul>
+<p>Once a block has been mined, there is a secondary decision that must be made as to what should be done with the material, typically referred to as the &quot;destination&quot; of the block. Again, note here that a &quot;destination&quot; is not just restricted to a physical destination at a mine (i.e., the waste dump, the plant, etc), but should encompass any downstream decisions that are required to be made once the block has been mined. Hence, the &quot;estination should encompass a <code>set</code> of activities that could be performed with the mined block. This is why sometimes the destination is also referred to as the &quot;mode&quot; or &quot;activity&quot; of a block once it has been mined. There are typically many different destinations that a block can take. An example of alternative destinations at an open pit mine is as follows:</p>
+<ol>
+<li>A block is mined using a face shovel and sent to the processing plant (<code>destination: block-&gt;face shovel-&gt;plant</code>)</li>
+<li>A block is mined using a front-end loader and sent to the processing plant (<code>destination: block-&gt;front-end loader-&gt; plant</code>)</li>
+<li>A block is mine and sent to the waste dump (<code>destination: block-&gt;waste dump</code>)</li>
+</ol>
+<p>It is often the case in mining that the downstream destination decisions are required to be more granular for the material contained inside a block than the decision to mine the block itself. An example is if a bench at an open pit mine is being treated as the mining-level decision, not all material on that bench should go to the same destination. A bench would typically contain some amount of ore that would go to the plant, and some amount of waste that would go to the dump. For this reason, blocks are split up into multiple &quot;parcels&quot;, with the mining decision being made on the block level, and the destination decision being made independently for each parcel. The parcels contained within a block are however mined in equal proportions - it would be rare to be able to access all the ore on a bench without having to mine any of the waste.</p>
+<h2 id="integer-terms-in-the-linear-program"><a class="header" href="#integer-terms-in-the-linear-program">Integer terms in the linear program</a></h2>
+<h2 id="at-format-and-by-format"><a class="header" href="#at-format-and-by-format">AT-format and BY-format</a></h2>
+<p>It’s common in the basic formulation of scheduling models to express the decision variables in terms of activities happening <strong>at</strong> a time period rather than <strong>by</strong> a time period. For example, it would be normal to state that <em>block x</em> is mined at <em>period y</em>, as opposed to <em>block x</em> is mined in some time period by the end of <em>period y</em> (including <em>period y</em>).</p>
+<p>Nonetheless, it is actually more natural to model decisions in scheduling problems as happening <strong>by</strong> a time period. This modelling assumption implies (importantly) that decisions made during a mining schedule are actually cumulative, whereby a decision to mine a block in an earlier period has a cumulative impact on whether said block can be mined in later periods. </p>
+<p>While at first this “by-formulation” may seem unnecessary and cumbersome, it becomes clear when you analyse the structure of models used by some existing mine planning softwares that they also use a by-formulation. The most classic and simple example would be a pit optimisation problem (yes, this is not a scheduling problem), such as solved by Geovia Whittle, where there a set of blocks with economic values and precedences between different blocks. The precedences between blocks actually control the cumulative decision making nature of the problem. To mine a block on bench 3, you must have also mined its preceding blocks on benches 1 and 2. Therefore the preceding blocks must be <em>accumulated</em> before the block of interest can be extracted.</p>
+<p>Utilising a by-formulation to model mine scheduling problems affords multiple benefits over the simpler at-formulation. Note for completeness here that using a by-formulation and at-formulation will always give the same schedule result, but are just two different variable spaces for modelling the same problem (think of an angle measured in degrees vs. radians - both are representations of the same angle but in different variable spaces). </p>
+<p>The first benefit is actually reducing the number of non-zero variables in the linear programming decision variable coefficient matrix (the &quot;A&quot; matrix). Don't let that mouthful confuse you, it is simple to show with an example that using a by-formulation can actually make modelling the finitude constraints (i.e., can only mine a block once) and precedence constraints alot easier. Lets assume we have two blocks <em>x1</em> and <em>x2</em>, with five time periods <em>t1</em>, <em>t2</em>, <em>t3</em>, <em>t4</em>, <em>t5</em>, and want to write the linear program of the precedence constraints for these blocks (see below). In terms of the decision variables we have $$x1_{t1}$$, $$x1_{t2}$$, $$x1_{t3}$$, $$x1_{t4}$$, $$x1_{t5}$$, $$x2_{t1}$$, $$x2_{t2}$$, $$x2_{t3}$$, $$x2_{t4}$$, $$x2_{t5}$$, with each binary variable tracking if block <em>x</em> is mined in that time period <em>t</em>. We also assume that <em>x2</em> is a precedent to <em>x1</em>. You can see below that using the at-formulation we must sum up and check whether <em>x2</em> has already been mined in previous periods to <em>x1</em>, whereas with the by-formulation we can just make sure for each time period that <em>x2</em> must equal to or greater than in the previous periods to <em>x1</em> (i.e., representing the cumulative nature of mining a block). Obviously for this toy example the difference is not major, but you could imagine the difference in the size of the linear program for instances with millions of blocks and tens of periods.</p>
+<p>$$AT-formulation:$$</p>
+<p>$$ precedence~constraint~for~period~1:~x1_{t1} \leq x2_{t1}  $$</p>
+<p>$$ precedence~constraint~for~period~2:~x1_{t2} \leq x2_{t1} + x2_{t2} $$</p>
+<p>$$ precedence~constraint~for~period~3:~x1_{t3} \leq x2_{t1} + x2_{t2} + x2_{t3} $$</p>
+<p>$$ precedence~constraint~for~period~4:~x1_{t4} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} $$</p>
+<p>$$ precedence~constraint~for~period~5:~x1_{t5} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} + x2_{t5} $$</p>
+<p>$$BY-formulation:$$</p>
+<p>$$~precedence~constraint~for~period~1:~x1_{t1} \leq x2_{t1} $$</p>
+<p>$$~precedence~constraint~for~period~2:~x1_{t2} \leq x2_{t2} $$</p>
+<p>$$~precedence~constraint~for~period~3:~x1_{t3} \leq x2_{t3} $$</p>
+<p>$$~precedence~constraint~for~period~4:~x1_{t4} \leq x2_{t4} $$</p>
+<p>$$~precedence~constraint~for~period~5:~x1_{t5} \leq x2_{t5} $$</p>
+<p>The second benefit of using the by-formulation is bit more difficult to explain and is beyond the scope of this documentation, but by modelling decisions to mine a block in different time periods, and send it to different destinations as a cumulative set of decisions, this allows us to represent these cumulative precedence relationships using a directed acyclic graph (DAG), similar to precedence arcs used in pseudoflow for the ultimate pit problem (interestingly, the ultimate pit problem is actually a single-period scheduling problem where there are no constraints). This DAG structure of the by-formulation allows us to apply specialised algorithms, such as the [Bienstock-Zuckerberg algorithm]({{ site.url }}/assets/papers/Bienstock_Zuckerberg_2009.pdf){:target=&quot;_blank&quot;}, to more efficiently solve the mixed-integer linear program. If you are interested in reading more about this special structure created in the linear program by utilising the by-formulation, please refer to the following non-exhaustive list of references:</p>
+<ul>
+<li>[A maximum flow formulation of <br>a multi-period open-pit mining problem]({{ site.url }}/assets/papers/Amankwah_etal_2014.pdf){:target=&quot;_blank&quot;}</li>
+<li>[Solving LP Relaxations of Large-<br>Scale Precedence Constrained Problems]({{ site.url }}/assets/papers/Bienstock_Zuckerberg_2009.pdf){:target=&quot;_blank&quot;}</li>
+<li>[Solving the mixed-integer linear programming <br>problem for mine production scheduling with <br>stockpiling under multi-element geological <br>uncertainty]({{ site.url }}/assets/papers/Brika_etal_2019.pdf){:target=&quot;_blank&quot;}</li>
+</ul>
+<p>The final topic to discuss relating to at-formulations vs. by-formulations is how we can actually transpose linear program inputs and results between these two variable spaces, as people will still want the schedule results reported in terms of blocks and parcels being mined <em>at</em> a time period.</p>
+<h2 id="stockpiling"><a class="header" href="#stockpiling">Stockpiling</a></h2>
+<p>Stockpiling requires a special mention, as it is one of the most common aspects of mine planning that is run up the flag pole as a weakness of using linear programming for mine scheduling, and why linear programming should not be used. In theory, stockpiling should just be able to be treated as another destination for a parcel once it has been extracted. A parcel should be able to be stored for a certain number of periods, and then at some later date be reclaimed and processed. This method of allowing each parcel to be stockpiled individually without any mixing between parcels is a simple linear problem, and can be easily incorporated into a linear programming model. </p>
+<p>The problem arises however, when we make the assumption that stockpiles are completely mixed and all material placed on a stockpile becomes homogeneous. This is a fairly standard assumption in mine planning contexts (especially strategic planning), and is considered to be a conservative assumption. In a production envvironment at an operating mine, it is typically expected that once a parcel of ore is placed on a stockpile, it won't be able to be selectively reclaimed later. When asked about stockpiles, mine planners will typically say &quot;there is a stockpile that contains 1Mt of ore at 1.8 g/t Au&quot; (i.e., they're reporting the mixed average grade). They <u>won't</u> typically say &quot;there is a stockpile that contains 5,134 parcels of ore, and the first parcel is 2.3 g/t, the second parcel is 1.7 g/t, the third parcel is 2.0 g/t, etc...&quot;.</p>
+<p>Assuming all parcels placed on a stockpile are mixed introduces a non-linear term into the mathematical model. This obviously cannot be solved simply using standard linear programming techniques. There are numerous methods that are used to either simplify and overcome the non-linear stockpile mixing assumption:</p>
+<ol>
+<li><strong>Don't consider reclaiming as part of the optimisation</strong>: This is probably the most simple method and basically doesn't optimise stockpile movements as part of the schedule. This method also only works with a window stepping time horizon scheduling method. If a problem is tried to be solved globally, ore can be stockpiled, but can never be reclaimed. Each stockpile is treated as a destination during each period of the schedule. When the schedule is solved for that period and moves to the next period, previously stockpiled material becomes a new source. However, with this method the optimiser cannot see that material that is stockpiled in this period is able to be reclaimed in later periods. This is the method utilised by <a href="https://www.minemax.com/products/scheduler/">Minemax Scheduler</a>.</li>
+<li><strong>Assume each stockpile has a fixed average grade</strong>: If all ore parcels sent to a stockpile in each period have the same average blended grade, then the grade of ore being reclaimed from a stockpile will always have a known fixed grade. This method is essentially applying additional constraints to each stockpile that forces the average grade to a single fixed value. If the ore in a stockpile is forced to all have the same grade, then by definition the stockpile must be mixed. An obvious drawback of this method of forcing stockpiles to be blended is that the average grade of each stockpile has to be pre-determined to running the schedule. This could inadvertently impact the result of the schedule optimisation.</li>
+<li><strong>Piece-wise linear approximation of the quadratic mixing constraints</strong>: This is basically an extension of the fixed-grade stockpiling approach (2), where all the material sent to a stockpile must be in the same grade range. The more grade ranges used will reduce the mixing error, but will also require more integer variables in the model, which will increase the model solve times. This method is relatively accurate to approximate stockpile mixing, but will always have some level of error, and solve times can be quite high if alot of grade ranges are used.</li>
+<li><strong>Specialised branching method</strong>: This method uses a specialised version of the branch-and-bound method for solving mixed integer linear programs, where additional constraints are added at each node in the search tree, and additional branches created. These additional constraints enforce that any solutions which violate the stockpile mixing requirement are cut-off at that node. The special branching method only adds linear constraints at each node in the branch-and-bound tree, so is practically efficient to solve using modern MILP solvers, as described by [Bley et. al., 2012]({{ site.url }}/assets/papers/Bley_etal_2012.pdf){:target=&quot;_blank&quot;}. This method for handling mixed stockpiles is the most complex to implement, as it requires modifying the functionality of the underlying LP solver, but also handles stockpile mixing without any drawbacks. This is the way <code>incitron</code> handles stockpiles.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
