@@ -45,19 +45,19 @@ Please take note of the special use of completing mining blocks and parcels `by`
 
 ## Decision variables (BY-format)
 
-\\(x_{\mathrm{bt}} : \\) 1 if block **b** has been completely mined by the end of period **t**, otherwise 0.
+\\(x_{\mathrm{bt}} : \\) 1 if block **b** has been completely mined <u>by</u> the end of period **t**, otherwise 0.
 
-\\(y_{\mathrm{bptd}} : \\) fraction of parcel **p** contained in block **b** mined by the end of period **t** and sent to destination **d**.
+\\(y_{\mathrm{bptd}} : \\) fraction of parcel **p** contained in block **b** mined <u>by</u> the end of period **t** and sent to destination **d**.
 
-\\(z_{\mathrm{bpts}} : \\) fraction of parcel **p** contained in block **b** mined by the end of period **t** and sent to stockpile **s**. 
+\\(z_{\mathrm{bpts}} : \\) fraction of parcel **p** contained in block **b** mined <u>by</u> the end of period **t** and sent to stockpile **s**. 
 
-\\(z_{\mathrm{sptd}} : \\) fraction of parcel **p** contained in stockpile **s** reclaimed by the end of period **t** and sent to destination **d**. 
+\\(z_{\mathrm{sptd}} : \\) fraction of parcel **p** contained in stockpile **s** reclaimed <u>by</u> the end of period **t** and sent to destination **d**. 
 
 \\(f_{\mathrm{st}} : \\) relative proportion of parcels from the stockpile **s** reclaimed in time period **t** (i.e., "out-fraction").
 
 \\(u_{\mathrm{c\hat{q}}} : \\) 1 if capital decision **c** has been purchased to expand the capacity of a set of constraints \\( \hat{q} \\), otherwise 0.
 
-\\(v_{\mathrm{f\hat{p}_f\hat{d}_f}} : \\) 1 if fixed cost has been paid to allow subset of parcels \\( \hat{p}_f \\) contained in blocks **b** mined by period **t** to be sent to subset of destinations \\( \hat{d}_f \\), otherwise 0.
+\\(v_{\mathrm{f\hat{p}_f\hat{d}_f}} : \\) 1 if fixed cost has been paid to allow subset of parcels \\( \hat{p}_f \\) contained in blocks **b** mined <u>by</u> period **t** to be sent to subset of destinations \\( \hat{d}_f \\), otherwise 0.
 
 precedence variables (binary) : \\( x_{\mathrm{bt}}\in\{0,1\} \\)
 
@@ -75,15 +75,15 @@ fixed cost variables (binary) : \\( v_{\mathrm{f\hat{p}_f\hat{d}_f}}\in\{0,1\} \
 
 ## Additional variables (BY-format)
 
-\\( p_{\mathrm{bptd}}^y : \\) objective value of parcel `p` contained in block `b` mined by period `t` and sent to destination `d`. 
+\\( p_{\mathrm{bptd}}^y : \\) objective value of parcel **p** contained in block **b** mined by period **t** and sent to destination **d**. 
 
-\\( p_{\mathrm{bpts}}^z : \\) objective value of parcel `p` contained in block `b` mined by period `t` and sent to stockpile `s`. 
+\\( p_{\mathrm{bpts}}^z : \\) objective value of parcel **p** contained in block **b** mined by period **t** and sent to stockpile **s**. 
 
-\\( p_{\mathrm{sptd}}^z : \\) objective value of parcel `p` contained in stockpile `s` reclaimed by period `t` and sent to destination `d`. 
+\\( p_{\mathrm{sptd}}^z : \\) objective value of parcel **p** contained in stockpile **s** reclaimed by period **t** and sent to destination **d**. 
 
-\\( p_{\mathrm{c\hat{q}}}^u : \\) objective value of capital decision `c`. 
+\\( p_{\mathrm{c\hat{q}}}^u : \\) objective value of capital decision **c**. 
 
-\\( p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v : \\) objective value of fixed cost `f`. 
+\\( p_{\mathrm{f\hat{p}_f\hat{d}_f}}^v : \\) objective value of fixed cost **f**. 
 
 note that \\( p \\) is usually the discounted value of making this decision, however it can be any value (recovered product, etc...)
 
