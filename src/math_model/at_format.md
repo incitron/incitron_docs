@@ -105,7 +105,7 @@ note that \\( p \\) is usually the discounted value of making this decision, how
 
 Note here we treat sending parcels to stockpiles as a seperate set of variables (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another "destination".
 
-\\( For \\ b \in B, \\ p \in P_b, \\ t \in \{ 2,...,T \}, \\ d \in D, \\ s \in S: \\)
+\\( For \\ b \in B, \\ p \in P_b, \\ t \in \{ 2,...,T \}: \\)
 
 \\( \displaystyle\sum_{d\in D} \displaystyle\sum_{\tau=1}^{t-1} y_{\mathrm{b p \tau d}} + \displaystyle\sum_{s\in S} \displaystyle\sum_{\tau=1}^{t-1} z_{\mathrm{b p \tau s}} \leq y_{\mathrm{bptd}} + z_{\mathrm{bpts}}\\ \Longleftrightarrow \\ \displaystyle\sum_{d\in D} \displaystyle\sum_{\tau=1}^{t-1} y_{\mathrm{b p \tau d}} + \displaystyle\sum_{s\in S} \displaystyle\sum_{\tau=1}^{t-1} z_{\mathrm{b p \tau s}} - y_{\mathrm{bptd}} - z_{\mathrm{bpts}} \leq 0 \\)
 
