@@ -99,7 +99,7 @@ note that \\( p \\) is usually the discounted value of making this decision, how
 
 \\( For \\ b \in B, \\ t \in \{ 2,...,T \}: \\)
 
-\\( x_{\mathrm{bt-1}} \leq x_{\mathrm{bt}}\\ \Longleftrightarrow \\ x_{\mathrm{bt-1}} - x_{\mathrm{bt}} \leq 0 \\)
+\\( \displaystyle\sum_{\tau=1}^{t-1} x_{\mathrm{b\tau}} \leq x_{\mathrm{bt}}\\ \Longleftrightarrow \\ \displaystyle\sum_{\tau=1}^{t-1} x_{\mathrm{b\tau}} - x_{\mathrm{bt}} \leq 0 \\)
 
 ### 2) Mine each parcel only once (finitude constraint)
 
