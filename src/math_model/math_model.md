@@ -49,29 +49,29 @@ Utilising a by-formulation to model mine scheduling problems affords multiple be
 
 The first benefit is actually reducing the number of non-zero variables in the linear programming decision variable coefficient matrix (the "A" matrix). Don't let that mouthful confuse you, it is simple to show with an example that using a by-formulation can actually make modelling the finitude constraints (i.e., can only mine a block once) and precedence constraints alot easier. Lets assume we have two blocks *x1* and *x2*, with five time periods *t1*, *t2*, *t3*, *t4*, *t5*, and want to write the linear program of the precedence constraints for these blocks (see below). In terms of the decision variables we have \\(x1_{t1}\\), \\(x1_{t2}\\), \\(x1_{t3}\\), \\(x1_{t4}\\), \\(x1_{t5}\\), \\(x2_{t1}\\), \\(x2_{t2}\\), \\(x2_{t3}\\), \\(x2_{t4}\\), \\(x2_{t5}\\), with each binary variable tracking if block *x* is mined in that time period *t*. We also assume that *x2* is a precedent to *x1*. You can see below that using the at-formulation we must sum up and check whether *x2* has already been mined in previous periods to *x1*, whereas with the by-formulation we can just make sure for each time period that *x2* must equal to or greater than in the previous periods to *x1* (i.e., representing the cumulative nature of mining a block). Obviously for this toy example the difference is not major, but you could imagine the difference in the size of the linear program for instances with millions of blocks and tens of periods.
 
-\\(AT-formulation:\\)
+AT-formulation:
 
-\\( precedence~constraint~for~period~1:~x1_{t1} \leq x2_{t1}  \\)
+precedence constraint for period 1: \\( x1_{t1} \leq x2_{t1} \\)
 
-\\( precedence~constraint~for~period~2:~x1_{t2} \leq x2_{t1} + x2_{t2} \\)
+precedence constraint for period 2: \\( x1_{t2} \leq x2_{t1} + x2_{t2} \\)
 
-\\( precedence~constraint~for~period~3:~x1_{t3} \leq x2_{t1} + x2_{t2} + x2_{t3} \\)
+precedence constraint for period 3: \\( x1_{t3} \leq x2_{t1} + x2_{t2} + x2_{t3} \\)
 
-\\( precedence~constraint~for~period~4:~x1_{t4} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} \\)
+precedence constraint for period 4: \\( x1_{t4} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} \\)
 
-\\( precedence~constraint~for~period~5:~x1_{t5} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} + x2_{t5} \\)
+precedence constraint for period 5: \\( x1_{t5} \leq x2_{t1} + x2_{t2} + x2_{t3} + x2_{t4} + x2_{t5} \\)
 
-\\(BY-formulation:\\)
+BY-formulation:
 
-\\(~precedence~constraint~for~period~1:~x1_{t1} \leq x2_{t1} \\)
+precedence constraint for period 1: \\( x1_{t1} \leq x2_{t1} \\)
 
-\\(~precedence~constraint~for~period~2:~x1_{t2} \leq x2_{t2} \\)
+precedence constraint for period 2: \\( x1_{t2} \leq x2_{t2} \\)
 
-\\(~precedence~constraint~for~period~3:~x1_{t3} \leq x2_{t3} \\)
+precedence constraint for period 3: \\( x1_{t3} \leq x2_{t3} \\)
 
-\\(~precedence~constraint~for~period~4:~x1_{t4} \leq x2_{t4} \\)
+precedence constraint for period 4: \\( x1_{t4} \leq x2_{t4} \\)
 
-\\(~precedence~constraint~for~period~5:~x1_{t5} \leq x2_{t5} \\)
+precedence constraint for period 5: \\( x1_{t5} \leq x2_{t5} \\)
 
 The second benefit of using the by-formulation is bit more difficult to explain and is beyond the scope of this documentation, but by modelling decisions to mine a block in different time periods, and send it to different destinations as a cumulative set of decisions, this allows us to represent these cumulative precedence relationships using a directed acyclic graph (DAG), similar to precedence arcs used in pseudoflow for the ultimate pit problem (interestingly, the ultimate pit problem is actually a single-period scheduling problem where there are no constraints). This DAG structure of the by-formulation allows us to apply specialised algorithms, such as the [Bienstock-Zuckerberg algorithm](../assets/papers/Bienstock_Zuckerberg_2009.pdf), to more efficiently solve the mixed-integer linear program. If you are interested in reading more about this special structure created in the linear program by utilising the by-formulation, please refer to the following non-exhaustive list of references:
 * [A maximum flow formulation of <br>a multi-period open-pit mining problem](../assets/papers/Amankwah_etal_2014.pdf)
