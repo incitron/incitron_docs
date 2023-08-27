@@ -103,29 +103,17 @@ note that \\( p \\) is usually the discounted value of making this decision, how
 
 ### 2) Mine each parcel only once (finitude constraint)
 
-Note here we treat sending parcels to stockpiles as a seperate set of constraints (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another "destination".
+Note here we treat sending parcels to stockpiles as a seperate set of variables (with the last stockpile S being equivalent to the last destination index), but realistically each stockpile could just be considered as another "destination".
 
-\\( For \\ b \in B, \\ p \in P_b, \\ t \in T, \\ d \in \{ 1,...,D-1 \}: \\)
+\\( For \\ b \in B, \\ p \in P_b, \\ t \in \{ 2,...,T \}, \\ d \in D, \\ s \in S: \\)
 
-\\( y_{\mathrm{bptd}} \leq y_{\mathrm{bptd+1}}\\ \Longleftrightarrow \\ y_{\mathrm{bptd}} - y_{\mathrm{bptd+1}} \leq 0 \\)
-
-\\( For \\ b \in B, \\ p \in P_b, \\ t \in T, \\ d = D, \\ s = 1: \\)
-
-\\( y_{\mathrm{bptD}} \leq z_{\mathrm{bpts}}\\ \Longleftrightarrow \\ y_{\mathrm{bptD}} - z_{\mathrm{bpts}} \leq 0 \\)
-
-\\( For \\ b \in B, \\ p \in P_b, \\ t \in T, \\ s \in \{ 2,...,S-1 \}: \\)
-
-\\( z_{\mathrm{bpts}} \leq z_{\mathrm{bpts+1}}\\ \Longleftrightarrow \\ z_{\mathrm{bpts}} - z_{\mathrm{bpts+1}} \leq 0 \\)
-
-\\( For \\ b \in B, \\ p \in P_b, \\ t \in \{ 1,...,T-1 \}, \\ d = 1, \\ s = S: \\)
-
-\\( z_{\mathrm{bptS}} \leq z_{\mathrm{bpt+1d}}\\ \Longleftrightarrow \\ z_{\mathrm{bptS}} - z_{\mathrm{bpt+1d}} \leq 0 \\)
+\\( \displaystyle\sum_{d\in D} \displaystyle\sum_{\tau=1}^{t-1} y_{\mathrm{b p \tau d}} + \displaystyle\sum_{s\in S} \displaystyle\sum_{\tau=1}^{t-1} z_{\mathrm{b p \tau s}} \leq y_{\mathrm{bptd}} + z_{\mathrm{bpts}}\\ \Longleftrightarrow \\ \displaystyle\sum_{d\in D} \displaystyle\sum_{\tau=1}^{t-1} y_{\mathrm{b p \tau d}} + \displaystyle\sum_{s\in S} \displaystyle\sum_{\tau=1}^{t-1} z_{\mathrm{b p \tau s}} - y_{\mathrm{bptd}} - z_{\mathrm{bpts}} \leq 0 \\)
 
 ### 3) Precedence constraint
 
 This constraint ensures that all the preceeding blocks have been mined before the parcels in the current block can be started.
 
-\\( For \\ b \in B, \\ p \in P_b, \\ \hat{b} \in \hat{B}_b, \\ t \in T, \\ s = S: \\)
+\\( For \\ b \in B, \\ p \in P_b, \\ \hat{b} \in \hat{B}_b, \\ t \in T, \\ d \in D, \\ s \in S: \\)
 
 \\( z_{\mathrm{bptS}} \leq x_{\mathrm{\hat{b}t}}\\ \Longleftrightarrow \\ z_{\mathrm{bptS}} - x_{\mathrm{\hat{b}t}} \leq 0 \\)
 
