@@ -73,11 +73,11 @@ fixed cost variables (binary) : \\( v_{\mathrm{f\hat{p}_f\hat{d}_f}}\in\{0,1\} \
 
 ## Additional variables (AT-format)
 
-\\( p_{\mathrm{bptd}}^y : \\) objective value of parcel **p** contained in block **b** mined by period **t** and sent to destination **d**. 
+\\( p_{\mathrm{bptd}}^y : \\) objective value of parcel **p** contained in block **b** mined <u>at</u> period **t** and sent to destination **d**. 
 
-\\( p_{\mathrm{bpts}}^z : \\) objective value of parcel **p** contained in block **b** mined by period **t** and sent to stockpile **s**. 
+\\( p_{\mathrm{bpts}}^z : \\) objective value of parcel **p** contained in block **b** mined <u>at</u> period **t** and sent to stockpile **s**. 
 
-\\( p_{\mathrm{sptd}}^z : \\) objective value of parcel **p** contained in stockpile **s** reclaimed by period **t** and sent to destination **d**. 
+\\( p_{\mathrm{sptd}}^z : \\) objective value of parcel **p** contained in stockpile **s** reclaimed <u>at</u> period **t** and sent to destination **d**. 
 
 \\( p_{\mathrm{c\hat{q}}}^u : \\) objective value of capital decision **c**. 
 
