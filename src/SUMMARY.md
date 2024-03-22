@@ -6,7 +6,11 @@
 
 - [Math Model](math_model/math_model.md)
     - [AT-Format](math_model/at_format.md)
+        - [Incl. Stockpiles](math_model/incl_stk/at_format.md)
+        - [Excl. Stockpiles](math_model/excl_stk/at_format.md)
     - [BY-Format](math_model/by_format.md)
+        - [Incl. Stockpiles](math_model/incl_stk/by_format.md)
+        - [Excl. Stockpiles](math_model/excl_stk/by_format.md)
 - [Core Library](core_library.md)
 - [Command Line Interface](command_line_interface.md)
 - [Academic Papers](academic_papers.md)

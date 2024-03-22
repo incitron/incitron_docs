@@ -7,7 +7,7 @@ General-purpose commercial linear programming solvers such as [CPLEX](https://ww
 The core engine is written in C, with a command-line interface written in C++. The command-line interface is used to provide interfaces with other languages. The reason the engine was written in C instead of newer, higher-level languages such as [Python](https://www.python.org/), [C#](https://docs.microsoft.com/en-us/dotnet/csharp/), [Go](https://go.dev/), [Rust](https://www.rust-lang.org/) or [Julia](https://julialang.org/) was for the following reasons:
 * C is close to the metal and extremely fast.
 * Manual memory management allows for granular control over allocating and freeing memory.
-* Some of the key libraries used by `incitron` (i.e., SCIP) are written in C, so it's easier to interface with these libraries.
+* Some of the key libraries used by `incitron` are written in C/C++, so it's easier to interface with these libraries.
 
 ## Features
 
